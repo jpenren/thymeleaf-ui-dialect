@@ -1,0 +1,4 @@
+<th:block th:if="*{isVisible(#httpServletRequest)}" xmlns:th="http://www.thymeleaf.org" th:with="className=*{className}?:'badge badge-secondary'">
+<span th:if="*{isText()}" th:id="*{id}" th:class="${className}" th:text="*{text}"></span>
+<a th:if="*{isLink()}" th:id="*{id}" th:class="${className}" th:href="*{getHref(#httpServletRequest)}" th:text="*{text}"></a>
+</th:block>

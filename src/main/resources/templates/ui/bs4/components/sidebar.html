@@ -1,0 +1,20 @@
+<nav th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?*{className}:sidebar-nav" xmlns:th="http://www.thymeleaf.org">
+    <div class="sidebar-header" th:if="*{header}" th:utext="#{*{header}}">
+        Bootstrap Sidebar
+    </div>
+    <ul>
+        <th:block th:each="entry:*{entries}">
+        <li th:if="${entry.name=='Entry'}" th:class="${entry.isActive(#httpServletRequest)}?active:(${entry.isDisabled(#httpServletRequest)}?disabled:'')">
+            <a th:href="${entry.getHref(#httpServletRequest)}" th:text="#{${entry.text}}"></a>
+        </li>
+        <li th:if="${entry.name=='Menu'}" th:class="${className}">
+            <a th:href="${'#'+entry.id}" data-toggle="collapse" th:attrappend="aria-expanded=${entry.isCollapsed(#httpServletRequest)?false:true}" class="dropdown-toggle" th:utext="${entry.text}"></a>
+            <ul th:id="${entry.id}" class="sidebar-nav-menu collapse" th:classappend="${entry.isCollapsed(#httpServletRequest)}?'':'show'">
+                <li th:each="subentry:${entry.entries}" th:class="${subentry.isActive(#httpServletRequest)}?active:(${subentry.isDisabled(#httpServletRequest)}?disabled:'')">
+                    <a th:href="${subentry.getHref(#httpServletRequest)}" th:utext="${subentry.text}"></a>
+                </li>
+            </ul>
+        </li>
+        </th:block>
+    </ul>
+</nav>

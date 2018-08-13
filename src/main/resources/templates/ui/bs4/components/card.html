@@ -1,0 +1,11 @@
+<div th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?:'card'" xmlns:th="http://www.thymeleaf.org">
+    <div th:if="*{header}" class="card-header" th:utext="#{*{header}}"></div>
+    <img th:if="*{image}" class="card-img-top" th:src="*{image.src}" th:alt="*{image.alt}?#{*{image.alt}}">
+    <div class="card-body">
+        <h5 th:if="*{title}" class="card-title" th:text="*{title}">Card title</h5>
+        <h6 th:if="*{subtitle}" class="card-subtitle mb-2 text-muted" th:text="#{*{subtitle}}">Card subtitle</h6>
+        <p th:if="*{text}" class="card-text" th:text="*{text}">Some quick example text</p>
+        <a th:each="link:*{links}" th:href="${link.getHref(#httpServletRequest)}" class="card-link" th:text="#{${link.text}}">Go somewhere</a>
+    </div>
+    <div th:if="*{footer}" class="card-footer text-muted" th:utext="#{*{footer}}"></div>
+</div>

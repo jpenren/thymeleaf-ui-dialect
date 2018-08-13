@@ -1,0 +1,21 @@
+<div th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?:'carousel slide'" data-ride="carousel" xmlns:th="http://www.thymeleaf.org">
+  <ol th:if="*{showIndicators}" class="carousel-indicators">
+    <li th:each="item,it:*{slides}" th:classappend="${it.first}?active" th:attrappend="data-slide-to=${it.index},data-target='#'+*{id}"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item" th:each="item,it:*{slides}" th:classappend="${it.first}?active">
+      <img class="d-block w-100" th:src="${item.image.src}" th:alt="${item.image.alt}?#{${item.image.alt}}">
+      <div th:if="${item.hasCaption()}" class="carousel-caption d-none d-md-block" th:utext="#{${item.caption}}"></div>
+    </div>
+  </div>
+  <th:block th:if="*{showControls}">
+  <a class="carousel-control-prev" th:href="'#'+*{id}" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" th:href="'#'+*{id}" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+  </th:block>
+</div>

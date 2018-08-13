@@ -1,0 +1,4 @@
+<figure th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?:'figure'" xmlns:th="http://www.thymeleaf.org">
+    <img th:src="*{image.src}" class="figure-img img-fluid rounded" th:alt="*{image.alt}?#{*{image.alt}}">
+    <figcaption th:if="*{hasCaption()}" class="figure-caption" th:text="#{*{caption}}">A caption for the above image</figcaption>
+</figure>
