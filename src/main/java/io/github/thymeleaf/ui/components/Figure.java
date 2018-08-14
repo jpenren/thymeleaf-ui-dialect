@@ -20,6 +20,11 @@ public class Figure extends Component {
         this.image = new Image(src, alt);
     }
     
+    public Figure caption(String caption) {
+        this.caption = caption;
+        return this;
+    }
+    
     public boolean hasCaption() {
         return Strings.isNotEmpty(caption);
     }
