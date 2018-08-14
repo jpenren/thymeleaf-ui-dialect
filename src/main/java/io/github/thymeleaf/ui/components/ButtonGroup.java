@@ -2,25 +2,29 @@ package io.github.thymeleaf.ui.components;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+import io.github.thymeleaf.ui.Checks;
 import io.github.thymeleaf.ui.Component;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-@Data
-@EqualsAndHashCode(callSuper=false)
+@NoArgsConstructor
+@AllArgsConstructor
 public class ButtonGroup extends Component {
-    private final List<Component> items = new ArrayList<>();
-    private String label;
+    private final List<Button> buttons = new ArrayList<>();
+    private @Getter String label;
     
     public ButtonGroup buttons(Button...buttons) {
-        if(buttons==null) {
-            throw new IllegalArgumentException("Argument can not be null!");
-        }
-        
-        this.items.addAll(Arrays.asList(buttons));
+        Checks.checkNotNullArgument(buttons);
+        this.buttons.addAll(Arrays.asList(buttons));
         return this;
+    }
+    
+    public List<Button> getButtons(){
+        return Collections.unmodifiableList(buttons);
     }
     
 }

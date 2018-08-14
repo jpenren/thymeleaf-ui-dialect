@@ -4,33 +4,23 @@ import javax.servlet.http.HttpServletRequest;
 
 import io.github.thymeleaf.ui.Component;
 import io.github.thymeleaf.ui.Strings;
-import lombok.EqualsAndHashCode;
+import io.github.thymeleaf.ui.Urls;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-@EqualsAndHashCode(callSuper=false)
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Badge extends Component {
-    private final @Getter String href;
-    private final String text;
-    
-    public Badge(String href, String text) {
-        this.href = href;
-        this.text = text;
-    }
-    
-    public Badge(String text) {
-        this(Strings.EMPTY, text);
-    }
-    
+    private final @Getter String text;
+    private String href;
+
     public String getHref(HttpServletRequest request) {
-        return request.getContextPath() + href;
+        return Urls.resolve(href, request);
     }
-    
-    public boolean isLink() {
+
+    public boolean hasLink() {
         return Strings.isNotEmpty(href);
-    }
-    
-    public boolean isText() {
-        return Strings.isEmpty(href);
     }
 
 }

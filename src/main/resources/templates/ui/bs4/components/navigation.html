@@ -1,17 +1,17 @@
-<ul th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?*{className}:nav" xmlns:th="http://www.thymeleaf.org">
-    <th:block th:each="item:*{items}">
-        <li th:if="${item.name=='Link'}" class="nav-item" >
-            <a class="nav-link" th:classappend="${item.isActive(#httpServletRequest)}?'active':(${item.isDisabled(#httpServletRequest)}?'disabled':'')" th:href="${item.getHref(#httpServletRequest)}" th:text="#{${item.text}}">Item</a>
-        </li>
-        
-        <li th:if="${item.name=='DropdownItem'}" class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" th:text="${item.text}">Dropdown</a>
-            <div class="dropdown-menu">
-                <th:block th:each="it:${item.items}">
-                  <a th:if="${it.name=='Link'}" class="dropdown-item" th:href="${item.getHref(#httpServletRequest)}" th:text="#{${it.text}}">Action</a>
-                  <div th:if="${it.name=='Divider'}" class="dropdown-divider"></div>
-                </th:block>
-            </div>
-      </li>
-    </th:block>
+<ul th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?*{className}:nav">
+  <th:block th:each="item:*{items}">
+    <li th:if="${item.name=='Link'}" class="nav-item" >
+      <a class="nav-link" th:classappend="${item.isActive(#httpServletRequest)}?active:(${item.isDisabled(#httpServletRequest)}?disabled)" th:href="${item.getHref(#httpServletRequest)}">[[#{${item.text}}]]</a>
+    </li>
+    <li th:if="${item.name=='Dropdown'}" class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" th:attrappend="aria-expanded=${item.isExpanded(#httpServletRequest)}">[[#{${item.toggle.text}}]]</a>
+      <div class="dropdown-menu">
+        <th:block th:each="menuItem:${item.items}">
+        <h6 th:if="${menuItem.name=='Header'}" class="dropdown-header">[[#{${menuItem.text}}]]</h6>
+        <a th:if="${menuItem.name=='Link'}" class="dropdown-item" th:href="${menuItem.getHref(#httpServletRequest)}" th:classappend="${menuItem.isActive(#httpServletRequest)}?active:(${menuItem.isDisabled(#httpServletRequest)}?disabled)">[[#{${menuItem.text}}]]</a>
+        <div th:if="${menuItem.name=='Divider'}" class="dropdown-divider"></div>
+        </th:block>
+      </div>
+    </li>
+  </th:block>
 </ul>

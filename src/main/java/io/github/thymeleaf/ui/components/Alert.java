@@ -1,13 +1,18 @@
 package io.github.thymeleaf.ui.components;
 
 import io.github.thymeleaf.ui.Component;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@RequiredArgsConstructor
 public class Alert extends Component {
     private final String message;
     private boolean dismissible;
+
+    public Alert dismissible() {
+        this.dismissible = true;
+        return this;
+    }
 
 }

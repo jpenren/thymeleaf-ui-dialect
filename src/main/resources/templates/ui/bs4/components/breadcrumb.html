@@ -1,8 +1,8 @@
-<nav th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}" aria-label="breadcrumb" xmlns:th="http://www.thymeleaf.org">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item" th:each="location,it : *{locations}"  th:classappend="${it.last} ? active" th:attrappend="aria-current=${it.last}?page">
-            <a th:if="${location.isLink()}" th:href="@{${location.href}}" th:text="#{${location.text}}"></a>
-            <th:block th:if="${location.isText()}" th:text="#{${location.text}}"></th:block>
-        </li>
-    </ol>
+<nav th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}" aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item" th:each="location,it:*{locations}" th:classappend="${it.last}?active" th:attrappend="aria-current=${it.last}?page">
+      <a th:if="${location.hasLink()}" th:href="@{${location.getHref(#httpServletRequest)}}" th:text="#{${location.text}}"></a>
+      <th:block th:if="${!location.hasLink()}" th:text="#{${location.text}}"></th:block>
+    </li>
+  </ol>
 </nav>

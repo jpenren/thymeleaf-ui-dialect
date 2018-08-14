@@ -1,3 +1,3 @@
-<div th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?:'btn-group'" role="group" th:attrappend="aria-label=*{label}" xmlns:th="http://www.thymeleaf.org" xmlns:ui="http://www.thymeleaf.org/ui">
-  <th:block th:each="item:*{items}" ui:render="${item}"></th:block>
+<div th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?:'btn-group'" role="group" th:attrappend="aria-label=*{label}">
+  <th:block th:each="button:*{buttons}" ui:render="${button}"></th:block>
 </div>

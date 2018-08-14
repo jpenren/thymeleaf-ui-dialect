@@ -1,4 +1,4 @@
-<div th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?:'carousel slide'" data-ride="carousel" xmlns:th="http://www.thymeleaf.org">
+<div th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?:'carousel slide'" data-ride="carousel">
   <ol th:if="*{showIndicators}" class="carousel-indicators">
     <li th:each="item,it:*{slides}" th:classappend="${it.first}?active" th:attrappend="data-slide-to=${it.index},data-target='#'+*{id}"></li>
   </ol>

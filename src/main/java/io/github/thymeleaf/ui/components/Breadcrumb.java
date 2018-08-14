@@ -2,15 +2,21 @@ package io.github.thymeleaf.ui.components;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import io.github.thymeleaf.ui.Component;
 import io.github.thymeleaf.ui.Strings;
-import lombok.Data;
+import io.github.thymeleaf.ui.Urls;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 public class Breadcrumb extends Component {
-    private final List<Location> locations = new ArrayList<>();
+    private final @Getter List<Location> locations = new ArrayList<>();
 
     public Breadcrumb location(String text) {
         return location(new Location(Strings.EMPTY, text));
@@ -20,27 +26,34 @@ public class Breadcrumb extends Component {
         return location(new Location(href, text));
     }
 
-    public Breadcrumb location(Location entry) {
-        locations.add(entry);
+    public Breadcrumb location(Location location) {
+        this.locations.add(location);
         return this;
     }
     
-    public List<Location> getLocations() {
-        return Collections.unmodifiableList(locations);
+    public Breadcrumb locations(Location ... locations) {
+        this.locations.addAll(Arrays.asList(locations));
+        return this;
     }
+    
+//    public List<Location> getLocations() {
+//        return Collections.unmodifiableList(locations);
+//    }
 
-    @Data
+    @AllArgsConstructor
+    @RequiredArgsConstructor
     public static class Location {
         private final String href;
-        private final String text;
+        private @Getter String text;
         
-        public boolean isLink() {
+        public boolean hasLink() {
             return Strings.isNotEmpty(href);
         }
         
-        public boolean isText() {
-            return Strings.isEmpty(href);
+        public String getHref(HttpServletRequest request) {
+            return "";//Urls.resolve(href, request);
         }
+        
     }
 
 }

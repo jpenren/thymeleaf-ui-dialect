@@ -3,13 +3,11 @@ package io.github.thymeleaf.ui.components;
 import io.github.thymeleaf.ui.Component;
 import io.github.thymeleaf.ui.Strings;
 import io.github.thymeleaf.ui.elements.Image;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-@Data
+@Getter
 @RequiredArgsConstructor
-@EqualsAndHashCode(callSuper=false)
 public class Figure extends Component {
     private final Image image;
     private String caption;

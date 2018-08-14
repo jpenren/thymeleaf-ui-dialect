@@ -1,4 +1,4 @@
-<th:block th:if="*{isVisible(#httpServletRequest)}" th:with="className=(*{className}?:'btn btn-primary')+(*{isActive(#httpServletRequest)?' active':''})+(*{isDisabled(#httpServletRequest)?' disabled':''})" xmlns:th="http://www.thymeleaf.org">
-<button th:if="*{isButton()}" th:id="*{id}" th:type="*{type}?:'button'" th:class="${className}" th:text="#{*{text}}" th:attrappend="data-toggle=*{toggle}?'button'"></button>
-<a th:if="*{isLink()}" th:id="*{id}" th:class="${className}" href="#" role="button" th:text="#{*{text}}" th:attrappend="aria-pressed=*{isActive(#httpServletRequest)}?true,data-toggle=*{toggle}?'button'"></a>
+<th:block th:if="*{isVisible(#httpServletRequest)}" th:with="className=(*{className}?:'btn btn-primary')+(*{isActive(#httpServletRequest)?' active':''})+(*{isDisabled(#httpServletRequest)?' disabled':''})">
+<button th:if="*{!hasLink()}" th:id="*{id}" th:type="*{type}" th:class="${className}" th:text="#{*{text}}" th:attrappend="data-toggle=*{toggle}?button"></button>
+<a th:if="*{hasLink()}" th:id="*{id}" th:class="${className}" href="#" role="button" th:text="#{*{text}}" th:attrappend="aria-pressed=*{isActive(#httpServletRequest)}?true,data-toggle=*{toggle}?button"></a>
 </th:block>

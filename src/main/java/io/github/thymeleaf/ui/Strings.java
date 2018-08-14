@@ -8,7 +8,7 @@ public final class Strings {
     }
 
     public static boolean isEmpty(String text) {
-        return text == null || text.trim().length() == 0;
+        return text == null || text.length() == 0;
     }
 
     public static boolean isNotEmpty(String text) {

@@ -46,13 +46,13 @@ public class Carousel extends Component {
         return this;
     }
     
-    public Carousel setShowControls(boolean showControls){
-        this.showControls = showControls;
+    public Carousel showControls(){
+        this.showControls = true;
         return this;
     }
     
-    public Carousel setShowIndicators(boolean showIndicators) {
-        this.showIndicators = showIndicators;
+    public Carousel showIndicators() {
+        this.showIndicators = true;
         return this;
     }
     
