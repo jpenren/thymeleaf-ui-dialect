@@ -20,29 +20,16 @@ public class Carousel extends Component {
     private boolean showIndicators;
     private boolean showControls;
     
-    public Carousel(String id) {
-        setId(id);
+    public Carousel addSlide(String src) {
+        return add(Slide.with(src));
     }
     
-    public Carousel slide(String src) {
-        slide(src, Strings.EMPTY);
-        return this;
+    public Carousel addSlide(String src, String caption) {
+        return add(Slide.with(src, caption));
     }
     
-    public Carousel slide(String src, String caption) {
-        slide(new Image(src), caption);
-        return this;
-    }
-    
-    public Carousel slide(Image image) {
-        slide(image, Strings.EMPTY);
-        return this;
-    }
-    
-    public Carousel slide(Image image, String caption) {
-        Slide item = new Slide(image);
-        item.setCaption(caption);
-        this.slides.add(item);
+    public Carousel add(Slide slide) {
+        slides.add(slide);
         return this;
     }
     
@@ -69,6 +56,40 @@ public class Carousel extends Component {
         public boolean hasCaption() {
             return Strings.isNotEmpty(caption);
         }
+        
+        public static Slide with(String src) {
+            return new Slide(new Image(src));
+        }
+        
+        public static Slide with(String src, String caption) {
+            Slide slide = new Slide(new Image(src));
+            slide.setCaption(caption);
+            return slide;
+        }
+        
+    }
+    
+    public static Carousel empty(String id) {
+        return new Carousel();
+    }
+    
+    public static Carousel with(String id) {
+        Carousel carousel = new Carousel();
+        carousel.setId(id);
+        return carousel;
+    }
+    
+    public static Carousel with(Slide ... slides) {
+        return with(null, slides);
+    }
+    
+    public static Carousel with(String id, Slide ... slides) {
+        Carousel carousel = new Carousel();
+        carousel.setId(id);
+        for (Slide slide : slides) {
+            carousel.add(slide);
+        }
+        return carousel;
     }
 
 }

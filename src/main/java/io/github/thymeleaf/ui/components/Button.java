@@ -3,31 +3,20 @@ package io.github.thymeleaf.ui.components;
 import javax.servlet.http.HttpServletRequest;
 
 import io.github.thymeleaf.ui.Component;
-import io.github.thymeleaf.ui.StatusChecker;
 import io.github.thymeleaf.ui.Strings;
 import io.github.thymeleaf.ui.Urls;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class Button extends Component implements StatusChecker {
+public class Button extends Component {
     public static final String DEFAULT_TYPE = "button";
     private final @Getter String text;
     private @Getter String type = DEFAULT_TYPE; // button, input, reset
     private @Getter boolean toggle;
     private String href;
     
-    public Button(String text, String type) {
-        this.text = text;
-        this.type = type;
-    }
-    
-    public Button href(String href) {
-        this.href = href;
-        return this;
-    }
-
-    public Button toggle() {
+    public Button setToggle() {
         this.toggle = true;
         return this;
     }
@@ -39,15 +28,25 @@ public class Button extends Component implements StatusChecker {
     public boolean hasLink() {
         return Strings.isNotEmpty(href);
     }
-
-    @Override
-    public boolean isActive(HttpServletRequest request) {
-        return false;
+    
+    public static Button with(String text) {
+        return new Button(text);
     }
-
-    @Override
-    public boolean isDisabled(HttpServletRequest request) {
-        return false;
+    
+    public static Button toggle(String text) {
+        return new Button(text).setToggle();
+    }
+    
+    public static Button with(String text, String type) {
+        Button button = new Button(text);
+        button.type = type;
+        return button;
+    }
+    
+    public static Button asLink(String href, String text) {
+        Button button = new Button(text);
+        button.href = href;
+        return button;
     }
 
 }

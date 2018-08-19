@@ -3,6 +3,9 @@ package io.github.thymeleaf.ui;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Any HTML element with template
+ */
 @Getter
 @Setter
 public abstract class Component extends Element implements Renderable {

@@ -14,5 +14,13 @@ public class Alert extends Component {
         this.dismissible = true;
         return this;
     }
+    
+    public static Alert with(String message) {
+        return new Alert(message);
+    }
+    
+    public static Alert dismissible(String message) {
+        return new Alert(message).dismissible();
+    }
 
 }

@@ -1,4 +1,4 @@
-<figure th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?:figure">
-    <img th:src="*{image.src}" th:class="*{image.className}?:'figure-img img-fluid'" th:alt="*{image.alt}?#{*{image.alt}}">
-    <figcaption th:if="*{hasCaption()}" class="figure-caption">[[#{*{caption}}]]</figcaption>
+<figure th:id="*{id}" th:class="*{className}?:figure">
+    <img th:src="*{image.src}" th:class="*{image.className}?:'figure-img img-fluid'" th:alt="*{image.alt}">
+    <figcaption th:if="*{hasCaption()}" class="figure-caption">[[*{caption}]]</figcaption>
 </figure>

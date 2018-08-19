@@ -10,7 +10,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public abstract class Element implements VisibilityChecker, HasHtmlAttributes {
+public abstract class Element implements HasHtmlAttributes, HasStatus {
     private String id;
     private String className; // html class attribute
 
@@ -18,10 +18,20 @@ public abstract class Element implements VisibilityChecker, HasHtmlAttributes {
         final String simpleName = getClass().getSimpleName();
         return Strings.isNotEmpty(simpleName) ? simpleName : getClass().getSuperclass().getSimpleName();
     }
+    
+    @Override
+    public boolean isActive(HttpServletRequest request) {
+        return false;
+    }
 
+    @Override
+    public boolean isDisabled(HttpServletRequest request) {
+        return false;
+    }
+    
     @Override
     public boolean isVisible(HttpServletRequest request) {
         return true;
     }
-
+    
 }

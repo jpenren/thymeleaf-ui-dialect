@@ -1,5 +1,5 @@
 <div th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?:'alert alert-primary'" th:classappend="*{dismissible}?'alert-dismissible fade show'" role="alert">
-  <th:block th:utext="#{*{message}}"></th:block>
+  <th:block th:utext="*{message}" />
   <button th:if="*{dismissible}" type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>

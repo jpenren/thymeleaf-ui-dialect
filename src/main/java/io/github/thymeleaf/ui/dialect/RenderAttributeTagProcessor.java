@@ -62,7 +62,7 @@ final class RenderAttributeTagProcessor extends AbstractAttributeTagProcessor {
         final String value = String.valueOf(expressionValue).trim();
         final IStandardExpressionParser expressionParser = getExpressionParser(context.getConfiguration());
         final IStandardExpression expression = expressionParser.parseExpression(context, value);
-
+        
         return expression.execute(context);
     }
 

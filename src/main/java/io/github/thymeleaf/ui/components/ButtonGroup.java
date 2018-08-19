@@ -1,30 +1,50 @@
 package io.github.thymeleaf.ui.components;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import io.github.thymeleaf.ui.Checks;
 import io.github.thymeleaf.ui.Component;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
-@AllArgsConstructor
 public class ButtonGroup extends Component {
     private final List<Button> buttons = new ArrayList<>();
     private @Getter String label;
     
-    public ButtonGroup buttons(Button...buttons) {
+    public ButtonGroup add(Button button) {
+        this.buttons.add(button);
+        return this;
+    }
+    
+    public ButtonGroup add(Button...buttons) {
         Checks.checkNotNullArgument(buttons);
-        this.buttons.addAll(Arrays.asList(buttons));
+        for (Button button : buttons) {
+            this.buttons.add(button);
+        }
         return this;
     }
     
     public List<Button> getButtons(){
         return Collections.unmodifiableList(buttons);
+    }
+    
+    public static ButtonGroup empty() {
+        return new ButtonGroup();
+    }
+    
+    public static ButtonGroup with(String label) {
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.label = label;
+        return buttonGroup;
+    }
+    
+    public static ButtonGroup with(Button ... buttons) {
+        return empty().add(buttons);
+    }
+    
+    public static ButtonGroup with(String label, Button ... buttons) {
+        return with(label).add(buttons);
     }
     
 }

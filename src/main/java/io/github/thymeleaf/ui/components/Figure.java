@@ -12,14 +12,6 @@ public class Figure extends Component {
     private final Image image;
     private String caption;
     
-    public Figure(String src) {
-        this(src, null);
-    }
-    
-    public Figure(String src, String alt) {
-        this.image = new Image(src, alt);
-    }
-    
     public Figure caption(String caption) {
         this.caption = caption;
         return this;
@@ -27,6 +19,18 @@ public class Figure extends Component {
     
     public boolean hasCaption() {
         return Strings.isNotEmpty(caption);
+    }
+    
+    public static Figure with(String src) {
+        return new Figure(Image.with(src));
+    }
+    
+    public static Figure with(String src, String alt) {
+        return new Figure(Image.with(src, alt));
+    }
+    
+    public static Figure with(String src, String alt, String title) {
+        return new Figure(Image.with(src, alt, title));
     }
         
 }

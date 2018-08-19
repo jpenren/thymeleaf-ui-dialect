@@ -1,15 +1,15 @@
 <nav th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?*{className}:sidebar-nav">
-  <div th:if="*{header}" th:utext="#{*{header}}" class="sidebar-header">Sidebar</div>
+  <div th:if="*{header}" th:utext="__*{header}__" class="sidebar-header">Sidebar</div>
   <ul>
-    <th:block th:each="item:*{items}">
+    <th:block th:each="item:*{items}" th:if="${item.isVisible(#httpServletRequest)}">
     <li th:if="${item.name=='Link'}" th:class="${item.isActive(#httpServletRequest)}?active:(${item.isDisabled(#httpServletRequest)}?disabled)">
-      <a th:href="${item.getHref(#httpServletRequest)}">[[#{${item.text}}]]</a>
+      <a th:href="${item.getHref(#httpServletRequest)}">[[${item.text}]]</a>
     </li>
-    <li th:if="${item.name=='Dropdown'}" th:class="${className}">
-      <a th:href="${'#'+item.toggle.id}" data-toggle="collapse" th:attrappend="aria-expanded=${item.isExpanded(#httpServletRequest)}" class="dropdown-toggle">[[${item.toggle.text}]]</a>
-      <ul th:id="${item.toggle.id}" class="sidebar-nav-menu collapse" th:classappend="${item.isExpanded(#httpServletRequest)}?show">
+    <li th:if="${item.name=='Submenu'}" th:class="${className}">
+      <a th:href="${'#'+item.id}" data-toggle="collapse" th:attrappend="aria-expanded=${item.isExpanded(#httpServletRequest)}" class="dropdown-toggle">[[${item.text}]]</a>
+      <ul th:id="${item.id}" class="sidebar-nav-menu collapse" th:classappend="${item.isExpanded(#httpServletRequest)}?show">
         <li th:each="menuItem:${item.items}" th:class="${menuItem.isActive(#httpServletRequest)}?active:(${menuItem.isDisabled(#httpServletRequest)}?disabled)">
-          <a th:href="${menuItem.getHref(#httpServletRequest)}">[[#{${menuItem.text}}]]</a>
+          <a th:href="${menuItem.getHref(#httpServletRequest)}">[[${menuItem.text}]]</a>
         </li>
       </ul>
     </li>

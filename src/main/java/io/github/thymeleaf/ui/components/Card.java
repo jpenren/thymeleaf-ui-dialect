@@ -8,10 +8,8 @@ import io.github.thymeleaf.ui.elements.Image;
 import io.github.thymeleaf.ui.elements.Link;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 @Getter
-@Setter
 @RequiredArgsConstructor
 public class Card extends Component {
     private final List<Link> links = new ArrayList<>();
@@ -22,18 +20,46 @@ public class Card extends Component {
     private String text;
     private String footer;
     
-    public Card(String src, String alt) {
-        this.image = new Image(src, alt);
-    }
-    
-    public Card link(String href, String text) {
-        links.add(new Link(href, text));
+    public Card header(String header) {
+        this.header = header;
         return this;
     }
     
-    public Card link(Link link) {
+    public Card title(String title) {
+        this.title = title;
+        return this;
+    }
+    
+    public Card subtitle(String subtitle) {
+        this.subtitle = subtitle;
+        return this;
+    }
+    
+    public Card text(String text) {
+        this.text = text;
+        return this;
+    }
+    
+    public Card footer(String footer) {
+        this.footer = footer;
+        return this;
+    }
+    
+    public Card addLink(String href, String text) {
+        return add(Link.with(href, text));
+    }
+    
+    public Card add(Link link) {
         links.add(link);
         return this;
+    }
+    
+    public static Card with(String src) {
+        return new Card(Image.with(src));
+    }
+    
+    public static Card with(String src, String alt) {
+        return new Card(Image.with(src, alt));
     }
     
 }
