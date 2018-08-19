@@ -6,7 +6,7 @@
       <a th:href="${item.getHref(#httpServletRequest)}">[[${item.text}]]</a>
     </li>
     <li th:if="${item.name=='Submenu'}" th:class="${className}">
-      <a th:href="${'#'+item.id}" data-toggle="collapse" th:attrappend="aria-expanded=${item.isExpanded(#httpServletRequest)}" class="dropdown-toggle">[[${item.text}]]</a>
+      <a th:href="${'#'+item.id}" data-toggle="collapse" th:attrappend="aria-expanded=${item.isExpanded(#httpServletRequest)}" class="dropdown-toggle">[[${__item.text__}]]</a>
       <ul th:id="${item.id}" class="sidebar-nav-menu collapse" th:classappend="${item.isExpanded(#httpServletRequest)}?show">
         <li th:each="menuItem:${item.items}" th:class="${menuItem.isActive(#httpServletRequest)}?active:(${menuItem.isDisabled(#httpServletRequest)}?disabled)">
           <a th:href="${menuItem.getHref(#httpServletRequest)}">[[${menuItem.text}]]</a>

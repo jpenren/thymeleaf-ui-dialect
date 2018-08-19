@@ -5,7 +5,7 @@ import java.util.Set;
 import org.thymeleaf.context.IExpressionContext;
 import org.thymeleaf.expression.IExpressionObjectFactory;
 
-public class ExpressionsFactoryt implements IExpressionObjectFactory {
+public class UiDialectExpressionObjectFactory implements IExpressionObjectFactory {
 
     @Override
     public Set<String> getAllExpressionObjectNames() {
