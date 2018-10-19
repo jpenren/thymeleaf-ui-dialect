@@ -7,10 +7,13 @@ import java.util.List;
 import io.github.thymeleaf.ui.Checks;
 import io.github.thymeleaf.ui.Component;
 import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class ButtonGroup extends Component {
     private final List<Button> buttons = new ArrayList<>();
-    private @Getter String label;
+    private String label;
     
     public ButtonGroup add(Button button) {
         this.buttons.add(button);
@@ -35,7 +38,7 @@ public class ButtonGroup extends Component {
     
     public static ButtonGroup with(String label) {
         ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.label = label;
+        buttonGroup.setLabel(label);
         return buttonGroup;
     }
     

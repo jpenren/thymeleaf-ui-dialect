@@ -18,25 +18,19 @@ import lombok.RequiredArgsConstructor;
 public class Breadcrumb extends Component {
     private final List<Location> locations = new ArrayList<>();
 
-    public Breadcrumb addLocation(String text) {
-        return add(Location.with(text));
+    public void addLocation(String text) {
+        add(Location.with(text));
     }
 
-    public Breadcrumb addLocation(String href, String text) {
-        return add(Location.with(href, text));
-    }
-
-    public Breadcrumb add(Location location) {
-        this.locations.add(location);
-        return this;
+    public void addLocation(String href, String text) {
+        add(Location.with(href, text));
     }
     
-    public Breadcrumb add(Location ... locations) {
+    public void add(Location ... locations) {
         Checks.checkNotNullArgument(locations);
         for (Location location : locations) {
             this.locations.add(location);
         }
-        return this;
     }
     
     public List<Location> getLocations() {
@@ -71,7 +65,9 @@ public class Breadcrumb extends Component {
     }
     
     public static Breadcrumb with(Location ... locations) {
-        return new Breadcrumb().add(locations);
+        Breadcrumb breadcrumb = new Breadcrumb();
+        breadcrumb.add(locations);
+        return breadcrumb;
     }
 
 }

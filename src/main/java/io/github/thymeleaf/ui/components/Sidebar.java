@@ -10,34 +10,28 @@ import io.github.thymeleaf.ui.Element;
 import io.github.thymeleaf.ui.elements.Link;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class Sidebar extends Component {
     private final ElementCollection items = new ElementCollection();
-    private @Getter String header;
+    private String header;
 
-    public Sidebar header(String header) {
-        this.header = header;
-        return this;
-    }
-
-    public Sidebar add(Link... links) {
+    public void add(Link... links) {
         items.addAll(links);
-        return this;
     }
 
-    public Sidebar add(int index, Link... links) {
+    public void add(int index, Link... links) {
         items.addAll(index, links);
-        return this;
     }
 
-    public Sidebar add(Submenu... submenus) {
+    public void add(Submenu... submenus) {
         items.addAll(submenus);
-        return this;
     }
 
-    public Sidebar add(int index, Submenu... submenus) {
+    public void add(int index, Submenu... submenus) {
         items.addAll(index, submenus);
-        return this;
     }
     
     public List<Element> getItems() {
@@ -49,15 +43,21 @@ public class Sidebar extends Component {
     }
 
     public static Sidebar with(String header) {
-        return new Sidebar().header(header);
+        return with(header, new Link[]{});
     }
 
     public static Sidebar with(Link... links) {
-        return empty().add(links);
+        return with(null, links);
     }
 
     public static Sidebar with(String header, Link... links) {
-        return with(header).add(links);
+        Sidebar sidebar = empty();
+        sidebar.setHeader(header);
+        if(links!=null) {
+            sidebar.add(links);
+        }
+        
+        return sidebar;
     }
 
     @RequiredArgsConstructor

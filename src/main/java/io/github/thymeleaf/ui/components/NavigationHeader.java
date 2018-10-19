@@ -1,36 +1,34 @@
 package io.github.thymeleaf.ui.components;
 
+import io.github.thymeleaf.ui.Strings;
 import io.github.thymeleaf.ui.elements.Link;
 import lombok.Getter;
+import lombok.Setter;
 
-public class NavigationHeader extends Nav<NavigationHeader> {
-    private @Getter Link brand;
-
-    public NavigationHeader brand(String href, String text) {
-        this.brand = new Link(href, text);
-        return this;
-    }
+@Getter
+@Setter
+public class NavigationHeader extends Nav {
+    private Link brand;
 
     public static NavigationHeader empty() {
         return new NavigationHeader();
     }
-
-    public static NavigationHeader with(Link brand) {
-        NavigationHeader navigationHeader = new NavigationHeader();
-        navigationHeader.brand = brand;
-        return navigationHeader;
-    }
     
     public static NavigationHeader with(String href, String text) {
-        return with(Link.with(href, text));
+        return with(href, text, new Link[] {});
+    }
+    
+    public static NavigationHeader with(Link... links) {
+        return with(Strings.EMPTY, Strings.EMPTY, links);
     }
     
     public static NavigationHeader with(String href, String text, Link...links) {
-        return with(href, text).add(links);
-    }
-
-    public static NavigationHeader with(Link... links) {
-        return new NavigationHeader().add(links);
+        NavigationHeader navigationHeader = new NavigationHeader();
+        navigationHeader.setBrand(Link.with(href, text));
+        if( links!=null ) {
+            navigationHeader.add(links);
+        }
+        return navigationHeader;
     }
 
 }

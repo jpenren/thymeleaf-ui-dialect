@@ -20,6 +20,8 @@ public class Card extends Component {
     private String text;
     private String footer;
     
+    //FIXME body? image? simplificar
+    
     public Card header(String header) {
         this.header = header;
         return this;

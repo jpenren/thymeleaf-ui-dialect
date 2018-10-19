@@ -12,35 +12,18 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @RequiredArgsConstructor
 public class Carousel extends Component {
     private final List<Slide> slides = new ArrayList<>();
     private boolean showIndicators;
     private boolean showControls;
     
-    public Carousel addSlide(String src) {
-        return add(Slide.with(src));
-    }
-    
-    public Carousel addSlide(String src, String caption) {
-        return add(Slide.with(src, caption));
-    }
-    
-    public Carousel add(Slide slide) {
+    public void add(Slide slide) {
         slides.add(slide);
-        return this;
-    }
-    
-    public Carousel showControls(){
-        this.showControls = true;
-        return this;
-    }
-    
-    public Carousel showIndicators() {
-        this.showIndicators = true;
-        return this;
     }
     
     public List<Slide> getSlides() {
@@ -69,7 +52,7 @@ public class Carousel extends Component {
         
     }
     
-    public static Carousel empty(String id) {
+    public static Carousel empty() {
         return new Carousel();
     }
     

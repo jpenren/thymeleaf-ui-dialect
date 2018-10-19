@@ -7,7 +7,9 @@ import io.github.thymeleaf.ui.Strings;
 import io.github.thymeleaf.ui.Urls;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
+@Setter
 @RequiredArgsConstructor
 public class Badge extends Component {
     private final @Getter String text;
@@ -27,7 +29,7 @@ public class Badge extends Component {
     
     public static Badge with(String href, String text) {
         Badge badge = new Badge(text);
-        badge.href = href;
+        badge.setHref(href);
         return badge;
     }
 

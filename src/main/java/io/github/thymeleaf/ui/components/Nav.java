@@ -7,38 +7,31 @@ import io.github.thymeleaf.ui.Component;
 import io.github.thymeleaf.ui.Element;
 import io.github.thymeleaf.ui.elements.Link;
 
-@SuppressWarnings("unchecked")
-abstract class Nav<T> extends Component {
+abstract class Nav extends Component {
     private final ElementCollection items = new ElementCollection();
     
-    public T addLink(String href, String text) {
+    public void addLink(String href, String text) {
         items.add(Link.with(href, text));
-        return (T) this;
     }
     
-    public T addLink(String href, String text, String title) {
+    public void addLink(String href, String text, String title) {
         items.add(Link.with(href, text, title));
-        return (T) this;
     }
     
-    public T add(Link ... links) {
+    public void add(Link ... links) {
         items.addAll(links);
-        return (T) this;
     }
     
-    public T add(int index, Link ... links) {
+    public void add(int index, Link ... links) {
         items.addAll(index, links);
-        return (T) this;
     }
     
-    public T add(Dropdown dropdown) {
+    public void add(Dropdown dropdown) {
         items.add(dropdown);
-        return (T) this;
     }
     
-    public T add(int index, Dropdown dropdown) {
+    public void add(int index, Dropdown dropdown) {
         items.add(index, dropdown);
-        return (T) this;
     }
     
     public List<Element> getItems() {

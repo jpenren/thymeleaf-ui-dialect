@@ -17,6 +17,7 @@ import io.github.thymeleaf.ui.components.Card;
 import io.github.thymeleaf.ui.components.Carousel;
 import io.github.thymeleaf.ui.components.Carousel.Slide;
 import io.github.thymeleaf.ui.components.Dropdown;
+import io.github.thymeleaf.ui.components.Dropdown.Header;
 import io.github.thymeleaf.ui.components.Dropdown.Toggle;
 import io.github.thymeleaf.ui.components.Figure;
 import io.github.thymeleaf.ui.components.Navigation;
@@ -32,7 +33,7 @@ public class ComponentsApiTest {
     @Test
     public void componentsApiTest() throws Exception {
         new Alert("text");
-        new Alert("Alert text").dismissible();
+        new Alert("Alert text").setDismissible(true);
         Alert.with("text");
         Alert.dismissible("message");
         
@@ -41,16 +42,16 @@ public class ComponentsApiTest {
         Badge.with("#", "text");
         
         new Breadcrumb();
-        new Breadcrumb().addLocation("#", "text").addLocation("text");
+//        new Breadcrumb().addLocation("#", "text").addLocation("text");
         Breadcrumb.empty();
-        Breadcrumb.empty().addLocation("#", "text").addLocation("text");
+//        Breadcrumb.empty().addLocation("#", "text").addLocation("text");
         Breadcrumb.with(Location.with("#", "text"), Location.with("text"));
         
         new Button("text");
         Button.with("text");
         Button.with("text", "type");
         Button.toggle("text");
-        Button.asLink("#", "text");
+        Button.link("#", "text");
         
         new ButtonGroup();
         new ButtonGroup().add(Button.with("text"));
@@ -71,11 +72,14 @@ public class ComponentsApiTest {
         Carousel.with(Slide.with("src"));
         Carousel.with(Slide.with("src"), Slide.with("src"));
         Carousel.with("id", Slide.with("src"));
+        Carousel.with("").setShowControls(true);
+        Carousel.with("").setShowIndicators(true);
         
         new Dropdown(new Toggle(""));
-        new Dropdown(new Dropdown.Toggle("text")).header("text").divider().add(new Link("#", "text")).add(1, new Link("#","text"));
+        Dropdown.with("toggle");
+//        new Dropdown(new Dropdown.Toggle("text")).header("text").divider().add(new Link("#", "text")).add(1, new Link("#","text"));
         Dropdown.with("text");
-        Dropdown.with("text").header("t").add(Link.with("#", "text"), Link.with("#", "text")).divider().add(Link.with("#", "text"), Link.with("#", "text"));
+//        Dropdown.with("text").header("t").add(Link.with("#", "text"), Link.with("#", "text")).divider().add(Link.with("#", "text"), Link.with("#", "text"));
         Dropdown.with("text", "id");
         Dropdown.with("text", "id").add(Link.with("#", "text"), Link.with("#", "text"));
         
@@ -132,6 +136,14 @@ public class ComponentsApiTest {
         Link.with("#", "link", "title");
         Link.with("#", "Link", "Title", "target");
         Link.with("#", "Link", "Title", "target", "rel");
+        Link link = Link.with("", "");
+        link.setActive(new Condition<HttpServletRequest>() {
+            
+            @Override
+            public boolean test(HttpServletRequest request) {
+                return false;
+            }
+        });
         
         new Image("src");
         Image.with("src");
