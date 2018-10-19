@@ -17,7 +17,7 @@ public final class UiDialect extends AbstractProcessorDialect {
     }
 
     public Set<IProcessor> getProcessors(final String dialectPrefix) {
-        final Set<IProcessor> processors = new HashSet<IProcessor>();
+        final Set<IProcessor> processors = new HashSet<>();
         processors.add(new StandardXmlNsTagProcessor(TemplateMode.HTML, PREFIX));
         processors.add(new RenderAttributeTagProcessor(dialectPrefix));
         

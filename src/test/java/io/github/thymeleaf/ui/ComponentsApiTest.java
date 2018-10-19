@@ -17,7 +17,6 @@ import io.github.thymeleaf.ui.components.Card;
 import io.github.thymeleaf.ui.components.Carousel;
 import io.github.thymeleaf.ui.components.Carousel.Slide;
 import io.github.thymeleaf.ui.components.Dropdown;
-import io.github.thymeleaf.ui.components.Dropdown.Header;
 import io.github.thymeleaf.ui.components.Dropdown.Toggle;
 import io.github.thymeleaf.ui.components.Figure;
 import io.github.thymeleaf.ui.components.Navigation;
@@ -41,13 +40,13 @@ public class ComponentsApiTest {
         Badge.with("3");
         Badge.with("#", "text");
         
-        new Breadcrumb();
-//        new Breadcrumb().addLocation("#", "text").addLocation("text");
+        Breadcrumb breadcrumb = new Breadcrumb();
+        breadcrumb.add(new Location("#", "text"));
         Breadcrumb.empty();
-//        Breadcrumb.empty().addLocation("#", "text").addLocation("text");
         Breadcrumb.with(Location.with("#", "text"), Location.with("text"));
         
-        new Button("text");
+        Button button = new Button("text");
+        button.setHref("#");
         Button.with("text");
         Button.with("text", "type");
         Button.toggle("text");
@@ -115,8 +114,10 @@ public class ComponentsApiTest {
     @Test
     public void elementsApiTest() throws Exception {
         new Link("#", "Link");
-        new Link("#", "Link", "title");
-        new Link("#", "Link").target("target").rel("rel");
+        Link.with("", "", "");
+        Link link = new Link("#", "Link");
+        link.setRel("rel");
+        link.setTarget("target");
         new Link("#","Link") {
             @Override
             public boolean isActive(HttpServletRequest request) {
@@ -132,18 +133,17 @@ public class ComponentsApiTest {
             }
         };
         
-        Link.with("#", "Link").rel("r").target("t");
+        Link.with("#", "Link");
         Link.with("#", "link", "title");
         Link.with("#", "Link", "Title", "target");
         Link.with("#", "Link", "Title", "target", "rel");
-        Link link = Link.with("", "");
-        link.setActive(new Condition<HttpServletRequest>() {
-            
-            @Override
-            public boolean test(HttpServletRequest request) {
-                return false;
-            }
-        });
+//        link.setActive(new Condition<HttpServletRequest>() {
+//            
+//            @Override
+//            public boolean test(HttpServletRequest request) {
+//                return false;
+//            }
+//        });
         
         new Image("src");
         Image.with("src");

@@ -2,42 +2,29 @@ package io.github.thymeleaf.ui.elements;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.github.thymeleaf.ui.Checks;
 import io.github.thymeleaf.ui.Element;
 import io.github.thymeleaf.ui.Urls;
 import lombok.AccessLevel;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Getter
-@RequiredArgsConstructor
+@Setter
 public class Link extends Element {
-    private final @NonNull @Getter(value = AccessLevel.NONE) String href;
-    private final @NonNull String text;
+    private final @Getter(value = AccessLevel.NONE) String href;
+    private final String text;
     private String title;
     private String target;
     private String rel;
     
-    public Link(String href, String text, String title) {
-        this(href, text);
-        this.title = title;
+    public Link(String href, String text) {
+        Checks.checkIsNotEmpty(href);
+        Checks.checkIsNotEmpty(text);
+        this.href = href;
+        this.text = text;
     }
     
-    public Link title(String title) {
-        this.title = title;
-        return this;
-    }
-    
-    public Link target(String target) {
-        this.target = target;
-        return this;
-    }
-    
-    public Link rel(String rel) {
-        this.rel = rel;
-        return this;
-    }
-
     public String getHref(HttpServletRequest request) {
         return Urls.resolve(href, request);
     }
@@ -47,7 +34,9 @@ public class Link extends Element {
     }
 
     public static Link with(String href, String text, String title) {
-        return new Link(href, text, title);
+        Link link = new Link(href, text);
+        link.title = title;
+        return link;
     }
 
     public static Link with(String href, String text, String title, String target) {

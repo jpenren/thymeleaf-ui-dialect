@@ -25,42 +25,20 @@ public class Dropdown extends Component {
     private Header header;
     
     public void setHeader(String header) {
-        this.header = Header.with(header);
+        this.header = new Header(header);
     }
     
-//    
-//    public Dropdown addLink(String href, String text) {
-//        return add(Link.with(href, text));
-//    }
-//    
-//    public Dropdown addLink(String href, String text, String title) {
-//        return add(Link.with(href, text, title));
-//    }
-    
-//    public void add(Link item) {
-//        items.add(item);
-//    }
-//    
-//    public void add(int index, Link item) {
-//        items.add(index, item);
-//    }
-    
-    public void add(Link ... items) {
-        this.items.addAll(items);
+    public void add(Link ... links) {
+        this.items.addAll(links);
     }
     
-    public void add(int index, Link ... items) {
-        this.items.addAll(index, items);
+    public void add(int index, Link ... links) {
+        this.items.addAll(index, links);
     }
     
     public void divider() {
         items.add(Divider.INSTANCE);
     }
-//    
-//    public Dropdown divider(int index) {
-//        items.add(index, new Divider());
-//        return this;
-//    }
     
     public List<Element> getItems() {
         return Collections.unmodifiableList(items);
@@ -70,17 +48,9 @@ public class Dropdown extends Component {
         return with(toggle, null);
     }
     
-//    public static Dropdown with(String toggle, Header header) {
-//        return with(toggle, null);
-//    }
-    
     public static Dropdown with(String toggle, String toggleId) {
         return new Dropdown(Toggle.with(toggle, toggleId));
     }
-    
-//    public static Dropdown with(String toggle, String toggleId) {
-//        return new Dropdown(Toggle.with(toggle, toggleId));
-//    }
     
     @Getter
     @RequiredArgsConstructor
@@ -101,7 +71,6 @@ public class Dropdown extends Component {
             toggle.setClassName(className);
             return toggle;
         }
-        
     }
     
     @Getter

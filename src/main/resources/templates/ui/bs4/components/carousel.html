@@ -5,7 +5,7 @@
   <div class="carousel-inner">
     <div class="carousel-item" th:each="item,it:*{slides}" th:classappend="${it.first}?active">
       <img class="d-block w-100" th:src="${item.image.src}" th:alt="${item.image.alt}">
-      <div th:if="${item.hasCaption()}" class="carousel-caption d-none d-md-block" th:utext="${item.caption}"></div>
+      <div th:if="${item.hasCaption()}" class="carousel-caption d-none d-md-block" th:utext="#{${item.caption}}"></div>
     </div>
   </div>
   <th:block th:if="*{showControls}">

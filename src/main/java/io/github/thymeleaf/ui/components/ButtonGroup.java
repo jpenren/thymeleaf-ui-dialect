@@ -6,6 +6,7 @@ import java.util.List;
 
 import io.github.thymeleaf.ui.Checks;
 import io.github.thymeleaf.ui.Component;
+import io.github.thymeleaf.ui.Strings;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,17 +16,11 @@ public class ButtonGroup extends Component {
     private final List<Button> buttons = new ArrayList<>();
     private String label;
     
-    public ButtonGroup add(Button button) {
-        this.buttons.add(button);
-        return this;
-    }
-    
-    public ButtonGroup add(Button...buttons) {
+    public void add(Button...buttons) {
         Checks.checkNotNullArgument(buttons);
         for (Button button : buttons) {
             this.buttons.add(button);
         }
-        return this;
     }
     
     public List<Button> getButtons(){
@@ -43,11 +38,14 @@ public class ButtonGroup extends Component {
     }
     
     public static ButtonGroup with(Button ... buttons) {
-        return empty().add(buttons);
+        return with(Strings.EMPTY, buttons);
     }
     
     public static ButtonGroup with(String label, Button ... buttons) {
-        return with(label).add(buttons);
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.setLabel(label);
+        buttonGroup.add(buttons);
+        return buttonGroup;
     }
     
 }

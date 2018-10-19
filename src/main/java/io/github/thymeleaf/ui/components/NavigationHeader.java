@@ -15,7 +15,7 @@ public class NavigationHeader extends Nav {
     }
     
     public static NavigationHeader with(String href, String text) {
-        return with(href, text, new Link[] {});
+        return with(href, text, new Link[0]);
     }
     
     public static NavigationHeader with(Link... links) {

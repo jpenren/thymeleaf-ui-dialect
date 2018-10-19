@@ -43,7 +43,7 @@ public class Sidebar extends Component {
     }
 
     public static Sidebar with(String header) {
-        return with(header, new Link[]{});
+        return with(header, new Link[0]);
     }
 
     public static Sidebar with(Link... links) {
@@ -94,7 +94,7 @@ public class Sidebar extends Component {
         }
 
         public static Submenu with(String text, Link... links) {
-            return with(text, null, null, links);
+            return with(text, "menu-"+System.currentTimeMillis(), null, links);
         }
         
         public static Submenu with(String text, String id, Link... links) {
