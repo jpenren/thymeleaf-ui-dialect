@@ -7,20 +7,24 @@ import io.github.thymeleaf.ui.Component;
 import io.github.thymeleaf.ui.elements.Image;
 import io.github.thymeleaf.ui.elements.Link;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
-@RequiredArgsConstructor
+@Setter
+@NoArgsConstructor
 public class Card extends Component {
     private final List<Link> links = new ArrayList<>();
-    private final Image image;
+    private Image image;
     private String header;
     private String title;
     private String subtitle;
     private String text;
     private String footer;
     
-    //FIXME body? image? simplificar
+    public Card(Image image) {
+        this.image = image;
+    }
     
     public Card header(String header) {
         this.header = header;
@@ -56,8 +60,12 @@ public class Card extends Component {
         return this;
     }
     
+    public static Card empty() {
+        return new Card();
+    }
+    
     public static Card with(String src) {
-        return new Card(Image.with(src));
+        return with(src, null);
     }
     
     public static Card with(String src, String alt) {
