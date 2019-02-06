@@ -26,26 +26,4 @@ public class Button extends Component {
         return Strings.isNotEmpty(href);
     }
     
-    public static Button with(String text) {
-        return new Button(text);
-    }
-    
-    public static Button with(String text, String type) {
-        Button button = new Button(text);
-        button.type = type;
-        return button;
-    }
-    
-    public static Button toggle(String text) {
-        Button button = new Button(text);
-        button.setToggle(true);
-        return button;
-    }
-    
-    public static Button link(String href, String text) {
-        Button button = new Button(text);
-        button.setHref(href);
-        return button;
-    }
-
 }

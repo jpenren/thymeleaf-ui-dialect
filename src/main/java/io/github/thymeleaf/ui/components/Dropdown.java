@@ -44,28 +44,20 @@ public class Dropdown extends Component {
         return Collections.unmodifiableList(items);
     }
     
-    public static Dropdown with(String toggle) {
-        return with(toggle, null);
-    }
-    
-    public static Dropdown with(String toggle, String toggleId) {
-        return new Dropdown(Toggle.with(toggle, toggleId));
-    }
-    
     @Getter
     @RequiredArgsConstructor
     public static class Toggle extends Element {
         private final String text;
         
-        public static Toggle with(String text) {
+        public static Toggle toggle(String text) {
             return new Toggle(text);
         }
         
-        public static Toggle with(String text, String id) {
-            return with(text, id, null);
+        public static Toggle toggle(String text, String id) {
+            return toggle(text, id, null);
         }
         
-        public static Toggle with(String text, String id, String className) {
+        public static Toggle toggle(String text, String id, String className) {
             Toggle toggle = new Toggle(text);
             toggle.setId(id);
             toggle.setClassName(className);

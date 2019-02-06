@@ -16,7 +16,7 @@ public abstract class Component extends Element implements Renderable {
         final String simpleName = getClass().getSimpleName();
         final boolean isAnonimous = Strings.isEmpty(simpleName);
         final String className = isAnonimous ? getClass().getSuperclass().getSimpleName() : simpleName;
-
+        
         return "/components/" + Strings.dash(className);
     }
 

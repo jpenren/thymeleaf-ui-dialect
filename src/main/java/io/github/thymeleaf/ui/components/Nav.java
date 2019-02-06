@@ -10,14 +10,6 @@ import io.github.thymeleaf.ui.elements.Link;
 abstract class Nav extends Component {
     private final ElementCollection items = new ElementCollection();
     
-    public void addLink(String href, String text) {
-        items.add(Link.with(href, text));
-    }
-    
-    public void addLink(String href, String text, String title) {
-        items.add(Link.with(href, text, title));
-    }
-    
     public void add(Link ... links) {
         items.addAll(links);
     }

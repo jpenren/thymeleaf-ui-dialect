@@ -1,8 +1,30 @@
 package io.github.thymeleaf.ui;
 
+import static io.github.thymeleaf.ui.Components.alert;
+import static io.github.thymeleaf.ui.Components.alertDismissible;
+import static io.github.thymeleaf.ui.Components.badge;
+import static io.github.thymeleaf.ui.Components.breadcrumb;
+import static io.github.thymeleaf.ui.Components.button;
+import static io.github.thymeleaf.ui.Components.buttonGroup;
+import static io.github.thymeleaf.ui.Components.buttonToggle;
+import static io.github.thymeleaf.ui.Components.card;
+import static io.github.thymeleaf.ui.Components.carousel;
+import static io.github.thymeleaf.ui.Components.dropdown;
+import static io.github.thymeleaf.ui.Components.figure;
+import static io.github.thymeleaf.ui.Components.image;
+import static io.github.thymeleaf.ui.Components.link;
+import static io.github.thymeleaf.ui.Components.location;
+import static io.github.thymeleaf.ui.Components.navigation;
+import static io.github.thymeleaf.ui.Components.navigationHeader;
+import static io.github.thymeleaf.ui.Components.sidebar;
+import static io.github.thymeleaf.ui.Components.slide;
+
 import javax.servlet.http.HttpServletRequest;
 
+import org.junit.Ignore;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
@@ -15,7 +37,6 @@ import io.github.thymeleaf.ui.components.Button;
 import io.github.thymeleaf.ui.components.ButtonGroup;
 import io.github.thymeleaf.ui.components.Card;
 import io.github.thymeleaf.ui.components.Carousel;
-import io.github.thymeleaf.ui.components.Carousel.Slide;
 import io.github.thymeleaf.ui.components.Dropdown;
 import io.github.thymeleaf.ui.components.Dropdown.Toggle;
 import io.github.thymeleaf.ui.components.Figure;
@@ -29,92 +50,93 @@ import io.github.thymeleaf.ui.elements.Link;
 
 public class ComponentsApiTest {
     
+    private static final Logger LOGGER = LoggerFactory.getLogger(ComponentsApiTest.class);
+    
     @Test
     public void componentsApiTest() throws Exception {
         new Alert("text");
         new Alert("Alert text").setDismissible(true);
-        Alert.with("text");
-        Alert.dismissible("message");
+        
+        alert("");
+        alertDismissible("");
         
         new Badge("3");
-        Badge.with("3");
-        Badge.with("#", "text");
+        badge("3");
+        badge("#", "text");
         
         Breadcrumb breadcrumb = new Breadcrumb();
         breadcrumb.add(new Location("#", "text"));
-        Breadcrumb.empty();
-        Breadcrumb.with(Location.with("#", "text"), Location.with("text"));
+        breadcrumb(location(""));
+        breadcrumb().add(location("",""));
         
         Button button = new Button("text");
         button.setHref("#");
-        Button.with("text");
-        Button.with("text", "type");
-        Button.toggle("text");
-        Button.link("#", "text");
+        
+        button("text");
+        button("text", "type");
+        buttonToggle("text");
         
         new ButtonGroup();
-        new ButtonGroup().add(Button.with("text"));
-        new ButtonGroup().add(Button.with("text"), Button.with("text"));
-        ButtonGroup.empty();
-        ButtonGroup.empty().add(Button.with("text"));
-        ButtonGroup.empty().add(Button.with("text"), Button.with("text"));
-        ButtonGroup.with(Button.with("text"));
-        ButtonGroup.with(Button.with("text"), Button.with("text"));
+        new ButtonGroup().add(button("text"));
+        new ButtonGroup().add(button("text"), button("text"));
+        buttonGroup(); //.empty();
+        buttonGroup().add(button("text"));
+        buttonGroup().add(button("text"), button("text"));
+        buttonGroup(button("text"));
+        buttonGroup(button("text"), button("text"));
         
         new Card(new Image("src"));
-        Card.with("src");
-        Card.with("src", "alt");
-        Card.with("src").header("h").title("t").subtitle("s").text("t").footer("f").addLink("#", "text");
+        card("src");
+        card("src", "alt");
+        card("src").header("h").title("t").subtitle("s").text("t").footer("f").addLink("#", "text");
         
         new Carousel();
-        Carousel.with("id");
-        Carousel.with(Slide.with("src"));
-        Carousel.with(Slide.with("src"), Slide.with("src"));
-        Carousel.with("id", Slide.with("src"));
-        Carousel.with("").setShowControls(true);
-        Carousel.with("").setShowIndicators(true);
+        carousel("id");
+        carousel(slide("src"));
+        carousel(slide("src"), slide("src"));
+        carousel("id", slide("src"));
+        carousel("").setShowControls(true);
+        carousel("").setShowIndicators(true);
         
         new Dropdown(new Toggle(""));
-        Dropdown.with("toggle");
-//        new Dropdown(new Dropdown.Toggle("text")).header("text").divider().add(new Link("#", "text")).add(1, new Link("#","text"));
-        Dropdown.with("text");
-//        Dropdown.with("text").header("t").add(Link.with("#", "text"), Link.with("#", "text")).divider().add(Link.with("#", "text"), Link.with("#", "text"));
-        Dropdown.with("text", "id");
-        Dropdown.with("text", "id").add(Link.with("#", "text"), Link.with("#", "text"));
+        dropdown("toggle");
+        dropdown("text");
+        dropdown("text", "id");
+        dropdown("text", "id").add(link("#", "text"), link("#", "text"));
         
         new Dropdown.Toggle("text");
-        Dropdown.Toggle.with("text");
-        Dropdown.Toggle.with("id", "text");
-        Dropdown.Toggle.with("id", "text", "className");
+        Dropdown.Toggle.toggle("text");
+        Dropdown.Toggle.toggle("id", "text");
+        Dropdown.Toggle.toggle("id", "text", "className");
         
         
         new Figure(new Image("src"));
-        Figure.with("src");
-        Figure.with("src", "alt");
-        Figure.with("src", "alt", "title");
+        figure("src");
+        figure("src", "alt");
+        figure("src", "alt", "title");
         
         new Navigation();
-        Navigation.empty();
-        Navigation.with(Link.with("#", "text"));
+        navigation();
+        navigation(link("#", "text"));
         
         new NavigationHeader();
-        new NavigationHeader().add(Link.with("#", "text"));
-        NavigationHeader.empty();
-        NavigationHeader.with(Link.with("#", "text"));
-        NavigationHeader.with("#", "");
-        NavigationHeader.with("#", "text", Link.with("#", ""));
+        new NavigationHeader().add(link("#", "text"));
+        navigationHeader();
+        navigationHeader(link("#", "text"));
+        navigationHeader("#", "");
+        navigationHeader("#", "text", link("#", ""));
         
         new Sidebar();
-        Sidebar.empty();
-        Sidebar.with("header");
-        Sidebar.with("header", Link.with("#", ""));
-        Sidebar.with(Link.with("#", ""));
+        sidebar();
+        sidebar("header");
+        sidebar("header", link("#", ""));
+        sidebar(link("#", ""));
     }
     
     @Test
     public void elementsApiTest() throws Exception {
         new Link("#", "Link");
-        Link.with("", "", "");
+        link("", "", "");
         Link link = new Link("#", "Link");
         link.setRel("rel");
         link.setTarget("target");
@@ -133,26 +155,19 @@ public class ComponentsApiTest {
             }
         };
         
-        Link.with("#", "Link");
-        Link.with("#", "link", "title");
-        Link.with("#", "Link", "Title", "target");
-        Link.with("#", "Link", "Title", "target", "rel");
-//        link.setActive(new Condition<HttpServletRequest>() {
-//            
-//            @Override
-//            public boolean test(HttpServletRequest request) {
-//                return false;
-//            }
-//        });
+        link("#", "Link");
+        link("#", "link", "title");
+        link("#", "Link", "Title", "target");
+        link("#", "Link", "Title", "target", "rel");
         
         new Image("src");
-        Image.with("src");
-        Image.with("src", "alt");
-        Image.with("src", "alt", "title");
+        image("src");
+        image("src", "alt");
+        image("src", "alt", "title");
     }
     
     @Test
-//    @Ignore
+    @Ignore
     public void benchmark() throws Exception {
         ClassLoaderTemplateResolver res = new ClassLoaderTemplateResolver();
         res.setCacheable(false);
@@ -170,12 +185,13 @@ public class ComponentsApiTest {
         String html=null;
         for (int i = 0; i < 10000; i++) {
             Context context = new Context();
-            context.setVariable("component", Carousel.with(Slide.with("src", "caption text"), Slide.with("src", "caption text")));
+            context.setVariable("component", carousel(slide("src", "caption text"), slide("src", "caption text")));
             html = engine.process("/test.html", context);
         }
-        System.out.println(html);
         
-        System.out.println("time: " + (System.currentTimeMillis()-startup)+"ms");
+        LOGGER.info(html);
+        
+        LOGGER.info("time: " + (System.currentTimeMillis()-startup)+"ms");
     }
 
 }

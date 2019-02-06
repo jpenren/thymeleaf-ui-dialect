@@ -10,7 +10,7 @@ public final class UiTemplateResolver extends ClassLoaderTemplateResolver {
         setOrder(Integer.MAX_VALUE);
         setPrefix("/templates/ui/"+theme);
         setSuffix(".html");
-        // Template name must match with '/components/template-name'
+        // Template name must match '/components/template-name'
         setResolvablePatterns(Collections.singleton("/components/*"));
     }
 

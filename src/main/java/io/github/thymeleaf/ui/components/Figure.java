@@ -18,20 +18,4 @@ public class Figure extends Component {
         return Strings.isNotEmpty(caption);
     }
     
-    public static Figure with(Image image) {
-        return new Figure(image);
-    }
-    
-    public static Figure with(String src) {
-        return new Figure(Image.with(src));
-    }
-    
-    public static Figure with(String src, String alt) {
-        return new Figure(Image.with(src, alt));
-    }
-    
-    public static Figure with(String src, String alt, String title) {
-        return new Figure(Image.with(src, alt, title));
-    }
-        
 }

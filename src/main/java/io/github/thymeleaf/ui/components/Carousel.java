@@ -40,39 +40,6 @@ public class Carousel extends Component {
             return Strings.isNotEmpty(caption);
         }
         
-        public static Slide with(String src) {
-            return new Slide(new Image(src));
-        }
-        
-        public static Slide with(String src, String caption) {
-            Slide slide = new Slide(new Image(src));
-            slide.setCaption(caption);
-            return slide;
-        }
-        
-    }
-    
-    public static Carousel empty() {
-        return new Carousel();
-    }
-    
-    public static Carousel with(String id) {
-        Carousel carousel = new Carousel();
-        carousel.setId(id);
-        return carousel;
-    }
-    
-    public static Carousel with(Slide ... slides) {
-        return with(null, slides);
-    }
-    
-    public static Carousel with(String id, Slide ... slides) {
-        Carousel carousel = new Carousel();
-        carousel.setId(id);
-        for (Slide slide : slides) {
-            carousel.add(slide);
-        }
-        return carousel;
     }
 
 }

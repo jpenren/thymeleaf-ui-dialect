@@ -6,7 +6,6 @@ import java.util.List;
 
 import io.github.thymeleaf.ui.Checks;
 import io.github.thymeleaf.ui.Component;
-import io.github.thymeleaf.ui.Strings;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -25,27 +24,6 @@ public class ButtonGroup extends Component {
     
     public List<Button> getButtons(){
         return Collections.unmodifiableList(buttons);
-    }
-    
-    public static ButtonGroup empty() {
-        return new ButtonGroup();
-    }
-    
-    public static ButtonGroup with(String label) {
-        ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.setLabel(label);
-        return buttonGroup;
-    }
-    
-    public static ButtonGroup with(Button ... buttons) {
-        return with(Strings.EMPTY, buttons);
-    }
-    
-    public static ButtonGroup with(String label, Button ... buttons) {
-        ButtonGroup buttonGroup = new ButtonGroup();
-        buttonGroup.setLabel(label);
-        buttonGroup.add(buttons);
-        return buttonGroup;
     }
     
 }

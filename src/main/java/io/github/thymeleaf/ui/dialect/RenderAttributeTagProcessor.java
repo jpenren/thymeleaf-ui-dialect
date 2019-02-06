@@ -85,9 +85,11 @@ final class RenderAttributeTagProcessor extends AbstractAttributeTagProcessor {
             HasHtmlAttributes htmlObject = (HasHtmlAttributes) target;
             final String sourceId = tag.getAttributeValue("id");
             final String className = tag.getAttributeValue("class");
+            
             if(isNotEmpty(sourceId)) {
                 htmlObject.setId(sourceId);
             }
+            
             if(isNotEmpty(className)) {
                 htmlObject.setClassName(className);
             }

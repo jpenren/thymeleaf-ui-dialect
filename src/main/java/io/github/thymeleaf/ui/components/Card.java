@@ -52,24 +52,12 @@ public class Card extends Component {
     }
     
     public Card addLink(String href, String text) {
-        return add(Link.with(href, text));
+        return add(new Link(href, text));
     }
     
     public Card add(Link link) {
         links.add(link);
         return this;
-    }
-    
-    public static Card empty() {
-        return new Card();
-    }
-    
-    public static Card with(String src) {
-        return with(src, null);
-    }
-    
-    public static Card with(String src, String alt) {
-        return new Card(Image.with(src, alt));
     }
     
 }

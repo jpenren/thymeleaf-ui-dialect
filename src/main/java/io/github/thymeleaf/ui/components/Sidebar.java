@@ -37,29 +37,7 @@ public class Sidebar extends Component {
     public List<Element> getItems() {
         return Collections.unmodifiableList(items);
     }
-
-    public static Sidebar empty() {
-        return new Sidebar();
-    }
-
-    public static Sidebar with(String header) {
-        return with(header, new Link[0]);
-    }
-
-    public static Sidebar with(Link... links) {
-        return with(null, links);
-    }
-
-    public static Sidebar with(String header, Link... links) {
-        Sidebar sidebar = empty();
-        sidebar.setHeader(header);
-        if(links!=null) {
-            sidebar.add(links);
-        }
-        
-        return sidebar;
-    }
-
+    
     @RequiredArgsConstructor
     public static class Submenu extends Element {
         private final ElementCollection items = new ElementCollection();
@@ -93,19 +71,6 @@ public class Sidebar extends Component {
             return false;
         }
 
-        public static Submenu with(String text, Link... links) {
-            return with(text, "menu-"+System.currentTimeMillis(), null, links);
-        }
-        
-        public static Submenu with(String text, String id, Link... links) {
-            return with(text, id, null, links);
-        }
-        
-        public static Submenu with(String text, String id, String className, Link... links) {
-            Submenu submenu = new Submenu(text, id, links);
-            submenu.setClassName(className);
-            return submenu;
-        }
     }
 
 }

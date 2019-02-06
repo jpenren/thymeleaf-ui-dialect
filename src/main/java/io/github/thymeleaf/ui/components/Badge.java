@@ -23,14 +23,4 @@ public class Badge extends Component {
         return Strings.isNotEmpty(href);
     }
     
-    public static Badge with(String text) {
-        return new Badge(text);
-    }
-    
-    public static Badge with(String href, String text) {
-        Badge badge = new Badge(text);
-        badge.setHref(href);
-        return badge;
-    }
-
 }
