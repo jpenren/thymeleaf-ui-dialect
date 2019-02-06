@@ -227,7 +227,9 @@ public final class Components {
     }
     
     public static NavigationHeader navigationHeader(Link... links) {
-        return navigationHeader(Strings.EMPTY, Strings.EMPTY, links);
+        NavigationHeader header = new NavigationHeader();
+        header.add(links);
+        return header;
     }
     
     public static NavigationHeader navigationHeader(String href, String text, Link...links) {

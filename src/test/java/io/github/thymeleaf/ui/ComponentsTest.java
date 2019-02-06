@@ -82,8 +82,8 @@ public class ComponentsTest {
         
         Breadcrumb breadcrumb = new Breadcrumb();
         breadcrumb.add(new Location("#", "text"));
-        breadcrumb(location(""));
-        breadcrumb().add(location("",""));
+        breadcrumb(location("text"));
+        breadcrumb().add(location("#","text"));
         
         Button button = new Button("text");
         button.setHref("#");
@@ -111,8 +111,8 @@ public class ComponentsTest {
         carousel(slide("src"));
         carousel(slide("src"), slide("src"));
         carousel("id", slide("src"));
-        carousel("").setShowControls(true);
-        carousel("").setShowIndicators(true);
+        carousel("id").setShowControls(true);
+        carousel("id").setShowIndicators(true);
         
         new Dropdown(new Toggle(""));
         dropdown("toggle");
@@ -139,20 +139,20 @@ public class ComponentsTest {
         new NavigationHeader().add(link("#", "text"));
         navigationHeader();
         navigationHeader(link("#", "text"));
-        navigationHeader("#", "");
-        navigationHeader("#", "text", link("#", ""));
+        navigationHeader("#", "text");
+        navigationHeader("#", "text", link("#", "text"));
         
         new Sidebar();
         sidebar();
         sidebar("header");
-        sidebar("header", link("#", ""));
-        sidebar(link("#", ""));
+        sidebar("header", link("#", "text"));
+        sidebar(link("#", "text"));
     }
     
     @Test
     public void elementsApiTest() throws Exception {
         new Link("#", "Link");
-        link("", "", "");
+        link("#", "text", "title");
         Link link = new Link("#", "Link");
         link.setRel("rel");
         link.setTarget("target");
