@@ -34,6 +34,7 @@ public String index(ModelMap model){
     
     //Badge
     model.addAttribute("badge", badge("4"));
+    model.addAttribute("badge2", badge("5"));
     
     //Breadcrumb
     Breadcrumb breadcrumb = breadcrumb(location("/", "home"), location("/", "admin"), location("current-page"));
@@ -75,6 +76,7 @@ Html template:
 
     <div ui:render="${alert}"></div>
     <span ui:render="${badge}"></span>
+    <span class="badge badge-pill badge-primary" ui:render="${badge2}"></span>
     <nav ui:render="${breadcrumb}"></nav>
     <div ui:render="${card}"></div>
     <div ui:render="${carousel}"></div>
