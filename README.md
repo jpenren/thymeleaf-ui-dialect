@@ -104,11 +104,18 @@ The default theme is bs4 (Bootstrap 4)
 Custom components
 -------
 
-Define your custom components just extending `io.github.thymeleaf.ui.Component` and create the html template. An example of a new component:
+Define your custom components just extending `io.github.thymeleaf.ui.Component` and create the html template, an example of a new component:
 
 ```java
 public class CustomComponent extends Component {
 
+}
+
+@GetMapping("/index")
+public String index(ModelMap model) {
+    model.addAttribute(new CustomComponent());
+    
+    return "index";
 }
 ```
 
