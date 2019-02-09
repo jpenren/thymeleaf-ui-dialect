@@ -96,7 +96,7 @@ Html template:
 Themes
 --------
 
-Any component has an html template with some Thymeleaf functions, this templates are located under `templates/ui/[theme]/components`. 
+Any component has an html template with some Thymeleaf functions, these templates are located under `templates/ui/[theme]/components`. 
 
 The default theme is bs4 (Bootstrap 4)
 
@@ -112,7 +112,7 @@ public class CustomComponent extends Component {
 }
 ```
 
-Template file under `src/main/resources/templates/ui/bs4/components/custom-component.html`
+Template file under `src/main/resources/templates/ui/bs4/components/custom-component.html`:
 ```html
 <div>
     <strong>Hello world!</strong>
