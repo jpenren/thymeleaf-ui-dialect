@@ -66,8 +66,12 @@ public String index(ModelMap model){
 Html template:
 
 ```html
+<!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:ui="http://www.thymeleaf.org/ui">
+<head>
 ...
+</head>
+<body>
 
     <div ui:render="${alert}"></div>
     <span ui:render="${badge}"></span>
@@ -75,6 +79,9 @@ Html template:
     <div ui:render="${card}"></div>
     <div ui:render="${carousel}"></div>
     <div ui:render="${dropdown}"></div>
+
+</body>
+</html>
 ```
 
 
