@@ -104,7 +104,13 @@ public class ComponentsTest {
         new Card(new Image("src"));
         card("src");
         card("src", "alt");
-        card("src").header("h").title("t").subtitle("s").text("t").footer("f").addLink("#", "text");
+        Card card = card("src");
+        card.setHeader("h");
+        card.setTitle("t");
+        card.setSubtitle("s");
+        card.setText("t");
+        card.setFooter("f");
+        card.addLink("#", "text");
         
         new Carousel();
         carousel("id");
