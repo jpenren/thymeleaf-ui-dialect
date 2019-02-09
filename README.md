@@ -119,7 +119,7 @@ public String index(ModelMap model) {
 }
 ```
 
-Template file under `src/main/resources/templates/ui/bs4/components/custom-component.html`:
+Template file for this component `src/main/resources/templates/ui/bs4/components/custom-component.html`:
 ```html
 <div>
     <strong>Hello world!</strong>
