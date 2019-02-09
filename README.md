@@ -69,7 +69,7 @@ public String index(ModelMap model){
 }
 ```
 
-Html template:
+Application html template:
 
 ```html
 <!doctype html>
