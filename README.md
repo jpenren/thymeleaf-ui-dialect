@@ -86,6 +86,7 @@ Html template:
 </html>
 ```
 
+![alt text](https://raw.githubusercontent.com/jpenren/thymeleaf-ui-dialect/master/doc/components.jpg "UI Components")
 
 Themes
 --------
