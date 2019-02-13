@@ -37,13 +37,7 @@ import static io.github.thymeleaf.ui.Components.slide;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.junit.Ignore;
 import org.junit.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import io.github.thymeleaf.ui.components.Alert;
 import io.github.thymeleaf.ui.components.Badge;
@@ -59,14 +53,10 @@ import io.github.thymeleaf.ui.components.Figure;
 import io.github.thymeleaf.ui.components.Navigation;
 import io.github.thymeleaf.ui.components.NavigationHeader;
 import io.github.thymeleaf.ui.components.Sidebar;
-import io.github.thymeleaf.ui.dialect.UiDialect;
-import io.github.thymeleaf.ui.dialect.ComponentTemplateResolver;
 import io.github.thymeleaf.ui.elements.Image;
 import io.github.thymeleaf.ui.elements.Link;
 
 public class ComponentsTest {
-    
-    private static final Logger LOGGER = LoggerFactory.getLogger(ComponentsTest.class);
     
     @Test
     public void componentsApiTest() throws Exception {
@@ -188,32 +178,4 @@ public class ComponentsTest {
         image("src", "alt", "title");
     }
     
-    @Test
-    @Ignore
-    public void benchmark() throws Exception {
-        ClassLoaderTemplateResolver res = new ClassLoaderTemplateResolver();
-        res.setCacheable(false);
-        SpringTemplateEngine engine = new SpringTemplateEngine();
-        engine.addTemplateResolver(res);
-        
-        UiDialect uiDialect = new UiDialect();
-        engine.addDialect(uiDialect);
-        ComponentTemplateResolver uiTemplateResolver = new ComponentTemplateResolver("bs4");
-        uiTemplateResolver.setCacheable(false);
-        engine.addTemplateResolver(uiTemplateResolver);
-        
-        long startup = System.currentTimeMillis();
-        
-        String html=null;
-        for (int i = 0; i < 10000; i++) {
-            Context context = new Context();
-            context.setVariable("component", carousel(slide("src", "caption text"), slide("src", "caption text")));
-            html = engine.process("/test.html", context);
-        }
-        
-        LOGGER.info(html);
-        
-        LOGGER.info("time: " + (System.currentTimeMillis()-startup)+"ms");
-    }
-
 }
