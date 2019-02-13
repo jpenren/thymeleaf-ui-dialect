@@ -22,8 +22,8 @@ import java.util.Collection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import io.github.thymeleaf.ui.Checks;
 import io.github.thymeleaf.ui.Element;
+import io.github.thymeleaf.ui.internal.Checks;
 
 class ElementCollection extends ArrayList<Element> implements Collection<Element> {
     private static final Logger LOGGER = LoggerFactory.getLogger(ElementCollection.class);

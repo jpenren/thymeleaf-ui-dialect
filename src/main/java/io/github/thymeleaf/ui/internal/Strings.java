@@ -14,27 +14,25 @@
  * limitations under the License.
  */
 
-package io.github.thymeleaf.ui;
+package io.github.thymeleaf.ui.internal;
 
-public final class Checks {
-    
-    private Checks() {
+public final class Strings {
+
+    public static final String EMPTY = "";
+
+    private Strings() {
+    }
+
+    public static boolean isEmpty(String text) {
+        return text == null || text.length() == 0;
+    }
+
+    public static boolean isNotEmpty(String text) {
+        return !isEmpty(text);
     }
     
-    public static void checkNotNullArgument(Object param) {
-        if(param==null) {
-            throw new IllegalArgumentException("Argument can not be null");
-        }
-    }
-    
-    public static void checkIsNotEmpty(String param) {
-        if(param==null) {
-            throw new IllegalArgumentException("Argument can not be null");
-        }
-        
-        if(param.length()==0) {
-            throw new IllegalArgumentException("Argument can not be empty");
-        }
+    public static final String dash(String text) {
+        return text==null ? EMPTY : text.replaceAll("([a-z])([A-Z]+)", "$1-$2").toLowerCase();
     }
 
 }

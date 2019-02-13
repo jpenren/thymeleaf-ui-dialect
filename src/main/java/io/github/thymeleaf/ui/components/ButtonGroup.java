@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import io.github.thymeleaf.ui.Checks;
 import io.github.thymeleaf.ui.Component;
+import io.github.thymeleaf.ui.internal.Checks;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -17,8 +17,8 @@
 package io.github.thymeleaf.ui.components;
 
 import io.github.thymeleaf.ui.Component;
-import io.github.thymeleaf.ui.Strings;
 import io.github.thymeleaf.ui.elements.Image;
+import io.github.thymeleaf.ui.internal.Strings;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

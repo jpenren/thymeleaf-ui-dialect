@@ -16,6 +16,7 @@
 
 package io.github.thymeleaf.ui;
 
+import io.github.thymeleaf.ui.internal.Strings;
 import lombok.Getter;
 import lombok.Setter;
 

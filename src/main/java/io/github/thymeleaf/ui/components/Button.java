@@ -19,8 +19,8 @@ package io.github.thymeleaf.ui.components;
 import javax.servlet.http.HttpServletRequest;
 
 import io.github.thymeleaf.ui.Component;
-import io.github.thymeleaf.ui.Strings;
-import io.github.thymeleaf.ui.Urls;
+import io.github.thymeleaf.ui.internal.Strings;
+import io.github.thymeleaf.ui.internal.Urls;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;

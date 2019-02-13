@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2015 the original author or authors.
+ * Copyright 2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,29 +14,23 @@
  * limitations under the License.
  */
 
-package io.github.thymeleaf.ui.components;
+package io.github.thymeleaf.ui.internal;
 
 import javax.servlet.http.HttpServletRequest;
 
-import io.github.thymeleaf.ui.Component;
-import io.github.thymeleaf.ui.internal.Strings;
-import io.github.thymeleaf.ui.internal.Urls;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+public final class Urls {
+    // Match absolute uri (http://www.google.com | //www.google.com)
+    private static final String ABSOLUTE_URI_REGEX = ".*//.*";
 
-@Setter
-@RequiredArgsConstructor
-public class Badge extends Component {
-    private final @Getter String text;
-    private String href;
-
-    public String getHref(HttpServletRequest request) {
-        return Urls.resolve(href, request);
+    private Urls() {
     }
 
-    public boolean hasLink() {
-        return Strings.isNotEmpty(href);
+    public static String resolve(String href, HttpServletRequest request) {
+        if("#".equals(href)) {
+            return href;
+        }
+        
+        return href.matches(ABSOLUTE_URI_REGEX) ? href : request.getContextPath() + href;
     }
-    
+
 }

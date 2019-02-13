@@ -18,6 +18,7 @@ package io.github.thymeleaf.ui;
 
 import javax.servlet.http.HttpServletRequest;
 
+import io.github.thymeleaf.ui.internal.Strings;
 import lombok.Getter;
 import lombok.Setter;
 

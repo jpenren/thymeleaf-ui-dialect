@@ -22,8 +22,8 @@ import java.util.List;
 
 import io.github.thymeleaf.ui.Component;
 import io.github.thymeleaf.ui.Element;
-import io.github.thymeleaf.ui.Strings;
 import io.github.thymeleaf.ui.elements.Image;
+import io.github.thymeleaf.ui.internal.Strings;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

@@ -34,6 +34,7 @@ import io.github.thymeleaf.ui.components.Dropdown.Toggle;
 import io.github.thymeleaf.ui.components.Sidebar.Submenu;
 import io.github.thymeleaf.ui.elements.Image;
 import io.github.thymeleaf.ui.elements.Link;
+import io.github.thymeleaf.ui.internal.Strings;
 
 /**
  * A set of methods useful for create components. These methods can be used directly:

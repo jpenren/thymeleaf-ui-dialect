@@ -16,7 +16,7 @@
 
 package io.github.thymeleaf.ui.dialect;
 
-import static io.github.thymeleaf.ui.Strings.isNotEmpty;
+import static io.github.thymeleaf.ui.internal.Strings.isNotEmpty;
 import static org.thymeleaf.standard.expression.StandardExpressions.getExpressionParser;
 
 import java.io.StringWriter;

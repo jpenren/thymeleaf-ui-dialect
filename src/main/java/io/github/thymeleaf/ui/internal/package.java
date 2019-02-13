@@ -14,23 +14,8 @@
  * limitations under the License.
  */
 
-package io.github.thymeleaf.ui;
-
-import javax.servlet.http.HttpServletRequest;
-
-public final class Urls {
-    // Match absolute uri (http://www.google.com | //www.google.com)
-    private static final String ABSOLUTE_URI_REGEX = ".*//.*";
-
-    private Urls() {
-    }
-
-    public static String resolve(String href, HttpServletRequest request) {
-        if("#".equals(href)) {
-            return href;
-        }
-        
-        return href.matches(ABSOLUTE_URI_REGEX) ? href : request.getContextPath() + href;
-    }
-
-}
+/**
+ * Classes under this package are implementation-dependent and subject to change
+ * without warning or backwards compatibility.
+ */
+package io.github.thymeleaf.ui.internal;
