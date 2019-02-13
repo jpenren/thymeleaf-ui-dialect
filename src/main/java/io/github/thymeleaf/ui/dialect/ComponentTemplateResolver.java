@@ -20,14 +20,14 @@ import java.util.Collections;
 
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
-public final class UiTemplateResolver extends ClassLoaderTemplateResolver {
+public final class ComponentTemplateResolver extends ClassLoaderTemplateResolver {
     
-    public UiTemplateResolver(String theme) {
-        setOrder(Integer.MAX_VALUE);
-        setPrefix("/templates/ui/"+theme);
+    public ComponentTemplateResolver(String theme) {
+        setPrefix("/templates/ui/themes/"+theme+"/");
         setSuffix(".html");
-        // Template name must match '/components/template-name'
-        setResolvablePatterns(Collections.singleton("/components/*"));
+        
+        // Template name must match '[template-name]-component'
+        setResolvablePatterns(Collections.singleton("*-component"));
     }
-
+    
 }

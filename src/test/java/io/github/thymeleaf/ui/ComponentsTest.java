@@ -60,7 +60,7 @@ import io.github.thymeleaf.ui.components.Navigation;
 import io.github.thymeleaf.ui.components.NavigationHeader;
 import io.github.thymeleaf.ui.components.Sidebar;
 import io.github.thymeleaf.ui.dialect.UiDialect;
-import io.github.thymeleaf.ui.dialect.UiTemplateResolver;
+import io.github.thymeleaf.ui.dialect.ComponentTemplateResolver;
 import io.github.thymeleaf.ui.elements.Image;
 import io.github.thymeleaf.ui.elements.Link;
 
@@ -198,7 +198,7 @@ public class ComponentsTest {
         
         UiDialect uiDialect = new UiDialect();
         engine.addDialect(uiDialect);
-        UiTemplateResolver uiTemplateResolver = new UiTemplateResolver("bs4");
+        ComponentTemplateResolver uiTemplateResolver = new ComponentTemplateResolver("bs4");
         uiTemplateResolver.setCacheable(false);
         engine.addTemplateResolver(uiTemplateResolver);
         
