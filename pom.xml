@@ -5,6 +5,11 @@
   <groupId>io.github.jpenren</groupId>
   <artifactId>thymeleaf-ui-dialect</artifactId>
   <version>1.0.0</version>
+  
+  <name>Thymeleaf UI Dialect</name>
+  <description>Thymeleaf dialect for reusable interface components</description>
+  <url>https://github.com/jpenren/thymeleaf-ui-dialect</url>
+  <inceptionYear>2019</inceptionYear>
 
   <licenses>
     <license>
@@ -12,6 +17,20 @@
       <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
     </license>
   </licenses>
+  
+  <developers>
+      <developer>
+          <name>Javier Pena</name>
+          <email>javiprendo@gmail.com</email>
+          <organizationUrl>https://github.com/jpenren</organizationUrl>
+      </developer>
+  </developers>
+  
+  <scm>
+      <connection>scm:git:git://github.com/jpenren/thymeleaf-ui-dialect.git</connection>
+      <developerConnection>scm:git:git@github.com:jpenren/thymeleaf-ui-dialect.git</developerConnection>
+      <url>git@github.com:jpenren/thymeleaf-ui-dialect.git</url>
+  </scm>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
