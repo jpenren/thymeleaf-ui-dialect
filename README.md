@@ -91,7 +91,8 @@ Application html template:
 </html>
 ```
 
-![alt text](https://raw.githubusercontent.com/jpenren/thymeleaf-ui-dialect/master/doc/components.jpg "UI Components")
+<img src="https://raw.githubusercontent.com/jpenren/thymeleaf-ui-dialect/master/doc/components.jpg" width="600">
+
 
 Themes
 --------
