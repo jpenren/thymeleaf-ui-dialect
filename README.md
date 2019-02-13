@@ -124,7 +124,7 @@ public class CustomComponent extends Component {
 
 @GetMapping("/index")
 public String index(ModelMap model) {
-    model.addAttribute(new CustomComponent());
+    model.addAttribute(new CustomComponent("Hello world!"));
     
     return "index";
 }
