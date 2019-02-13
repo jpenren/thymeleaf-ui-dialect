@@ -20,7 +20,7 @@ import java.util.Collections;
 
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
-public final class ComponentTemplateResolver extends ClassLoaderTemplateResolver {
+final class ComponentTemplateResolver extends ClassLoaderTemplateResolver {
     
     public ComponentTemplateResolver(String theme) {
         setPrefix("/templates/ui/themes/"+theme+"/");
