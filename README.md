@@ -1,5 +1,5 @@
 # Thymeleaf UI Dialect
-Thymeleaf dialect to create interface components bootstrap like, provides some attributes to create user interface (html) components.
+Thymeleaf dialect to create interface components, provides a simple way to define reusable components and some html attributes to render user interface (html) components.
 
 Usage
 -----
@@ -13,8 +13,13 @@ Add the Maven dependency to your project:
 </dependency>
 ```
 
+This library uses Spring Boot autoconfiguration feature, if required you can define this dialect manually:
+```java
+String theme = "bs4";
+templateEngine.addDialect(new UiTemplateResolver(theme));
+```
 
-This will introduce the `ui` namespace and the new attribute processor `render` to create html components.
+Enabling this dialect will introduce the `ui` namespace and the new attribute processor `render` to use html components.
 
 
 Examples
@@ -64,7 +69,7 @@ public String index(ModelMap model){
 }
 ```
 
-Html template:
+Application html template:
 
 ```html
 <!doctype html>
@@ -86,9 +91,37 @@ Html template:
 </html>
 ```
 
+![alt text](https://raw.githubusercontent.com/jpenren/thymeleaf-ui-dialect/master/doc/components.jpg "UI Components")
 
 Themes
 --------
 
+Any component has an html template with some Thymeleaf functions, these templates are located under `templates/ui/[theme]/components`. 
+
+The default theme is bs4 (Bootstrap 4)
+
+
 Custom components
 -------
+
+Define your custom components just extending `io.github.thymeleaf.ui.Component` and create the html template, an example of a new component:
+
+```java
+public class CustomComponent extends Component {
+
+}
+
+@GetMapping("/index")
+public String index(ModelMap model) {
+    model.addAttribute(new CustomComponent());
+    
+    return "index";
+}
+```
+
+Template file for this component `src/main/resources/templates/ui/bs4/components/custom-component.html`:
+```html
+<div>
+    <strong>Hello world!</strong>
+</div>
+```
