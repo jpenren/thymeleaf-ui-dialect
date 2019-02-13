@@ -27,7 +27,7 @@ Enabling this dialect will introduce the `ui` namespace and the new attribute pr
 Example
 --------
 
-Spring MV Controller:
+Spring MV @Controller:
 
 ```java
 import static io.github.thymeleaf.ui.Components.*;
@@ -76,11 +76,7 @@ Application html template:
 ```html
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:ui="http://www.thymeleaf.org/ui">
-<head>
-...
-</head>
 <body>
-
     <div ui:render="${alert}"></div>
     <span ui:render="${badge}"></span>
     <span class="badge badge-pill badge-primary" ui:render="${badge2}"></span>
@@ -88,7 +84,6 @@ Application html template:
     <div ui:render="${card}"></div>
     <div ui:render="${carousel}"></div>
     <div ui:render="${dropdown}"></div>
-
 </body>
 </html>
 ```
@@ -99,7 +94,7 @@ Application html template:
 Themes
 --------
 
-Any component has an html template with some Thymeleaf logic, these templates are located under `templates/ui/themes/[theme]/[class-name]-component`. 
+Any component has an html template with some Thymeleaf logic, these templates are located under `templates/ui/themes/[theme]/[class-name]-component.html`. 
 
 The default theme is `default` based on Bootstrap 4.
 
@@ -121,13 +116,6 @@ public class CustomComponent extends Component {
         return message;
     }
 }
-
-@GetMapping("/index")
-public String index(ModelMap model) {
-    model.addAttribute(new CustomComponent("Hello world!"));
-    
-    return "index";
-}
 ```
 
 Template file for this component `src/main/resources/templates/ui/themes/[theme]/custom-component-component.html`:
@@ -136,4 +124,25 @@ Template file for this component `src/main/resources/templates/ui/themes/[theme]
     <strong th:text="*{message}"></strong>
 </div>
 ```
-Note: template must match [class-name]-component.html
+
+Spring MVC @Controller
+
+```java
+@GetMapping("/index")
+public String index(ModelMap model) {
+    model.addAttribute(new CustomComponent("Hello world!"));
+    
+    return "index";
+}
+```
+
+Application html template:
+
+```html
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:ui="http://www.thymeleaf.org/ui">
+<body>
+    <div ui:render="${customComponent}"></div>
+</body>
+</html>
+```
