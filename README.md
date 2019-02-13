@@ -22,7 +22,7 @@ templateEngine.addDialect(new UiTemplateResolver(theme));
 Enabling this dialect will introduce the `ui` namespace and the new attribute processor `render` to use html components.
 
 
-Examples
+Example
 --------
 
 Spring MV Controller:
