@@ -11,7 +11,7 @@ Add the Maven dependency to your project:
 <dependency>
 	<groupId>io.github.jpenren</groupId>
 	<artifactId>thymeleaf-ui-dialect</artifactId>
-	<version>(in progress)</version>
+	<version>1.0.0</version>
 </dependency>
 ```
 
