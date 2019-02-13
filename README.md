@@ -1,6 +1,8 @@
 # Thymeleaf UI Dialect
 Thymeleaf dialect to create interface components, provides a simple way to define reusable components and some html attributes to render user interface (html) components.
 
+See demo project: https://github.com/jpenren/thymeleaf-ui-dialect-demo
+
 Usage
 -----
 
