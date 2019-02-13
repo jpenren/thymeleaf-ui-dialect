@@ -17,7 +17,7 @@ Add the Maven dependency to your project:
 
 This library uses Spring Boot autoconfiguration feature, if required you can define this dialect manually:
 ```java
-String theme = "bs4";
+String theme = "default";
 templateEngine.addDialect(new UiTemplateResolver(theme));
 ```
 
