@@ -97,9 +97,9 @@ Application html template:
 Themes
 --------
 
-Any component has an html template with some Thymeleaf functions, these templates are located under `templates/ui/[theme]/components`. 
+Any component has an html template with some Thymeleaf logic, these templates are located under `templates/ui/themes/[theme]/[class-name]-component`. 
 
-The default theme is bs4 (Bootstrap 4)
+The default theme is `default` based on Bootstrap 4.
 
 
 Custom components
@@ -109,7 +109,15 @@ Define your custom components just extending `io.github.thymeleaf.ui.Component` 
 
 ```java
 public class CustomComponent extends Component {
+    private final String message;
 
+    public CustomComponent(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }
 
 @GetMapping("/index")
@@ -120,9 +128,10 @@ public String index(ModelMap model) {
 }
 ```
 
-Template file for this component `src/main/resources/templates/ui/bs4/components/custom-component.html`:
+Template file for this component `src/main/resources/templates/ui/themes/[theme]/custom-component-component.html`:
 ```html
 <div>
-    <strong>Hello world!</strong>
+    <strong th:text="*{message}"></strong>
 </div>
 ```
+Note: template must match [class-name]-component.html
