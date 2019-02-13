@@ -17,8 +17,9 @@ Add the Maven dependency to your project:
 
 This library uses Spring Boot autoconfiguration feature, if required you can define this dialect manually:
 ```java
+templateEngine.addDialect(new UiDialect());
 String theme = "default";
-templateEngine.addDialect(new UiTemplateResolver(theme));
+templateEngine.addTemplateResolver(new ComponentTemplateResolver(theme));
 ```
 
 Enabling this dialect will introduce the `ui` namespace and the new attribute processor `render` to use html components.
