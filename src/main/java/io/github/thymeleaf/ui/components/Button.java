@@ -22,17 +22,21 @@ import io.github.thymeleaf.ui.Component;
 import io.github.thymeleaf.ui.internal.Strings;
 import io.github.thymeleaf.ui.internal.Urls;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class Button extends Component {
     public static final String DEFAULT_TYPE = "button";
-    private final @Getter String text;
+    private @Getter String text;
     private @Getter String type = DEFAULT_TYPE; // button, input, reset
     private @Getter boolean toggle;
     private String href;
+    
+    public Button(String text) {
+        this.text = text;
+    }
 
     public String getHref(HttpServletRequest request) {
         return Urls.resolve(href, request);
@@ -41,5 +45,5 @@ public class Button extends Component {
     public boolean hasLink() {
         return Strings.isNotEmpty(href);
     }
-    
+
 }

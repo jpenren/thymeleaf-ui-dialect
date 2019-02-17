@@ -1,3 +1,3 @@
-<div th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?:'btn-group'" role="group" th:attrappend="aria-label=*{label}">
+<div th:if="*{isVisible(#httpServletRequest)}" class="btn-group" role="group" ui:copy-parent-attributes="*" th:attrappend="aria-label=*{label}">
   <th:block th:each="button:*{buttons}" th:if="${button.isVisible(#httpServletRequest)}" ui:render="${button}"></th:block>
 </div>

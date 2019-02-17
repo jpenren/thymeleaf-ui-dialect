@@ -24,6 +24,9 @@ import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.processor.StandardXmlNsTagProcessor;
 import org.thymeleaf.templatemode.TemplateMode;
 
+import io.github.thymeleaf.ui.dialect.tags.CopyParentAttributesTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.RenderAttributeTagProcessor;
+
 public final class UiDialect extends AbstractProcessorDialect {
 
     private static final String PREFIX = "ui";
@@ -35,6 +38,7 @@ public final class UiDialect extends AbstractProcessorDialect {
     public Set<IProcessor> getProcessors(final String dialectPrefix) {
         final Set<IProcessor> processors = new HashSet<>();
         processors.add(new StandardXmlNsTagProcessor(TemplateMode.HTML, PREFIX));
+        processors.add(new CopyParentAttributesTagProcessor(dialectPrefix));
         processors.add(new RenderAttributeTagProcessor(dialectPrefix));
         
         return processors;

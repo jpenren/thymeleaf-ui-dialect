@@ -20,15 +20,19 @@ import io.github.thymeleaf.ui.Component;
 import io.github.thymeleaf.ui.elements.Image;
 import io.github.thymeleaf.ui.internal.Strings;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class Figure extends Component {
-    private final Image image;
+    private Image image;
     private String caption;
+    
+    public Figure(Image image) {
+        this.image = image;
+    }
     
     public boolean hasCaption() {
         return Strings.isNotEmpty(caption);

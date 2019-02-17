@@ -1,9 +1,9 @@
-<div th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?:dropdown">
+<div th:if="*{isVisible(#httpServletRequest)}" ui:copy-parent-attributes="*" class="dropdown">
   <button th:class="*{toggle.className}?:'btn btn-secondary dropdown-toggle'" th:id="*{toggle.id}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">[[*{toggle.text}]]</button>
   <div class="dropdown-menu" th:attrappend="aria-labelledby=*{toggle.id}">
-        <h6 th:if="*{header}" class="dropdown-header">[[#{*{header.text}}]]</h6>
+        <h6 th:if="*{header}" class="dropdown-header">[[*{header.text}]]</h6>
         <th:block th:each="item:*{items}" th:if="${item.isVisible(#httpServletRequest)}">
-        <a th:if="${item.name=='Link'}" class="dropdown-item" th:href="${item.getHref(#httpServletRequest)}" th:classappend="${item.isActive(#httpServletRequest)}?active:(${item.isDisabled(#httpServletRequest)}?disabled)">[[#{${item.text}}]]</a>
+        <a th:if="${item.name=='Link'}" class="dropdown-item" th:href="${item.getHref(#httpServletRequest)}" th:classappend="${item.isActive(#httpServletRequest)}?active:(${item.isDisabled(#httpServletRequest)}?disabled)">[[${item.text}]]</a>
         <div th:if="${item.name=='Divider'}" class="dropdown-divider"></div>
         </th:block>
   </div>

@@ -29,8 +29,9 @@ public final class Urls {
         if("#".equals(href)) {
             return href;
         }
+        String contextPath = request==null ? Strings.EMPTY : request.getContextPath();
         
-        return href.matches(ABSOLUTE_URI_REGEX) ? href : request.getContextPath() + href;
+        return href.matches(ABSOLUTE_URI_REGEX) ? href :  contextPath + href;
     }
 
 }

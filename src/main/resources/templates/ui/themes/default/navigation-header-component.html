@@ -1,5 +1,5 @@
-<nav th:if="*{isVisible(#httpServletRequest)}" th:id="*{id}" th:class="*{className}?:'navbar navbar-light bg-light'">
-  <a th:if="*{brand}" class="navbar-brand" th:href="*{brand.getHref(#httpServletRequest)}" th:utext="#{*{brand.text}}">Navbar</a>
+<nav th:if="*{isVisible(#httpServletRequest)}" ui:copy-parent-attributes="*" class="navbar navbar-light bg-light">
+  <a th:if="*{brand}" class="navbar-brand" th:href="*{brand.getHref(#httpServletRequest)}" th:utext="*{brand.text}">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,16 +8,16 @@
     <ul class="navbar-nav mr-auto">
       <th:block th:each="item:*{items}" th:if="${item.isVisible(#httpServletRequest)}">
       <li th:if="${item.name=='Link'}" class="nav-item" th:classappend="${item.isActive(#httpServletRequest)}?active">
-        <a class="nav-link" th:href="${item.getHref(#httpServletRequest)}" th:classappend="${item.isActive(#httpServletRequest)}?active:(${item.isDisabled(#httpServletRequest)}?disabled:'')">[[#{${item.text}}]] <span th:if="${item.isActive(#httpServletRequest)}" class="sr-only">(current)</span></a>
+        <a class="nav-link" th:href="${item.getHref(#httpServletRequest)}" th:classappend="${item.isActive(#httpServletRequest)}?active:(${item.isDisabled(#httpServletRequest)}?disabled:'')">[[${item.text}]] <span th:if="${item.isActive(#httpServletRequest)}" class="sr-only">(current)</span></a>
       </li>
       <li th:if="${item.name=='Dropdown'}" class="nav-item dropdown">
         <a th:if="${item.toggle}" th:class="${item.toggle.className?:'nav-link dropdown-toggle'}" th:id="${item.toggle.id}" aria-expanded="false" href="#" role="button" data-toggle="dropdown" aria-haspopup="true">
-          [[#{${item.toggle.text}}]]
+          [[${item.toggle.text}]]
         </a>
         <div class="dropdown-menu" th:attrappend="aria-labelledby=${item.toggle?.id}">
           <th:block th:each="menuItem:${item.items}">
-          <h6 th:if="${menuItem.name=='Header'}" class="dropdown-header">[[#{${menuItem.text}}]]</h6>
-          <a th:if="${menuItem.name=='Link'}" th:href="${menuItem.getHref(#httpServletRequest)}" class="dropdown-item" th:classappend="${menuItem.isActive(#httpServletRequest)}?active:(${menuItem.isDisabled(#httpServletRequest)}?disabled)">[[#{${menuItem.text}}]]</a>
+          <h6 th:if="${menuItem.name=='Header'}" class="dropdown-header">[[${menuItem.text}]]</h6>
+          <a th:if="${menuItem.name=='Link'}" th:href="${menuItem.getHref(#httpServletRequest)}" class="dropdown-item" th:classappend="${menuItem.isActive(#httpServletRequest)}?active:(${menuItem.isDisabled(#httpServletRequest)}?disabled)">[[${menuItem.text}]]</a>
           <div th:if="${menuItem.name=='Divider'}" class="dropdown-divider"></div>
           </th:block>
         </div>

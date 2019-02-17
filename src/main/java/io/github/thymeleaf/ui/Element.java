@@ -29,6 +29,9 @@ import lombok.Setter;
 public abstract class Element implements HasHtmlAttributes, HasStatus {
     private @Getter String id;
     private @Getter String className; // html class attribute
+    private boolean active;
+    private boolean disabled;
+    private boolean visible = true;
     
     public String getName() {
         final String simpleName = getClass().getSimpleName();
@@ -37,17 +40,17 @@ public abstract class Element implements HasHtmlAttributes, HasStatus {
     
     @Override
     public boolean isActive(HttpServletRequest request) {
-        return false;
+        return active;
     }
 
     @Override
     public boolean isDisabled(HttpServletRequest request) {
-        return false;
+        return disabled;
     }
     
     @Override
     public boolean isVisible(HttpServletRequest request) {
-        return true;
+        return visible;
     }
     
 }
