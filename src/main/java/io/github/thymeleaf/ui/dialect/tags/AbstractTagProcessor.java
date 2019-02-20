@@ -1,18 +1,19 @@
 package io.github.thymeleaf.ui.dialect.tags;
 
-import static io.github.thymeleaf.ui.dialect.tags.CopyParentAttributesTagProcessor.PARENT_ATTRIBUTES_VAR;
+import static io.github.thymeleaf.ui.dialect.tags.CopyTagAttributesTagProcessor.PARENT_ATTRIBUTES_VAR;
 import static org.thymeleaf.standard.expression.StandardExpressions.getExpressionParser;
 
 import java.io.StringWriter;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.thymeleaf.TemplateSpec;
 import org.thymeleaf.context.IEngineContext;
 import org.thymeleaf.context.IExpressionContext;
 import org.thymeleaf.context.ITemplateContext;
+import org.thymeleaf.engine.AttributeName;
 import org.thymeleaf.engine.TemplateManager;
 import org.thymeleaf.model.IAttribute;
 import org.thymeleaf.model.IProcessableElementTag;
@@ -23,9 +24,12 @@ import org.thymeleaf.standard.expression.IStandardExpressionParser;
 import org.thymeleaf.templatemode.TemplateMode;
 
 import io.github.thymeleaf.ui.Renderable;
+import io.github.thymeleaf.ui.internal.Reflection;
+import io.github.thymeleaf.ui.internal.Strings;
 
 abstract class AbstractTagProcessor extends AbstractAttributeTagProcessor {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractTagProcessor.class);
     private static final Pattern CLEANER = Pattern.compile("(?m)^[ \t]*\r?\n");
     private static final int PRECEDENCE = 10000;
 
@@ -41,7 +45,7 @@ abstract class AbstractTagProcessor extends AbstractAttributeTagProcessor {
         return expression.execute(context);
     }
     
-    protected void render(Renderable renderable, ITemplateContext context, IProcessableElementTag tag, IElementTagStructureHandler structureHandler) {
+    protected void render(Renderable renderable, ITemplateContext context, IProcessableElementTag tag, IElementTagStructureHandler structureHandler, AttributeName attributeName) {
         // IEngineContext should not be used but
         // structureHandler.setSelectionTarget(target); do not process variable until
         // the next execution
@@ -51,8 +55,9 @@ abstract class AbstractTagProcessor extends AbstractAttributeTagProcessor {
         
         // Available data on template
         final IEngineContext engineContext = (IEngineContext) context;
-        setParentAttributesAsLocalVariable(tag, engineContext);
-        Object previousSelectionTarget = engineContext.getSelectionTarget();
+        engineContext.setVariable(PARENT_ATTRIBUTES_VAR, tag.getAllAttributes());
+        final Object previousSelectionTarget = engineContext.getSelectionTarget();
+        assignProperties(renderable, tag, engineContext, attributeName);
         engineContext.setSelectionTarget(renderable);
 
         // Process template
@@ -62,16 +67,27 @@ abstract class AbstractTagProcessor extends AbstractAttributeTagProcessor {
         final StringWriter writer = new StringWriter();
         templateManager.parseAndProcess(templateSpec, context, writer);
         final String content = writer.toString();
-        String adjusted = CLEANER.matcher(content).replaceAll("");
+        final String adjusted = CLEANER.matcher(content).replaceAll(Strings.EMPTY);
         
         structureHandler.replaceWith(adjusted, false);
         engineContext.removeVariable(PARENT_ATTRIBUTES_VAR);
         engineContext.setSelectionTarget(previousSelectionTarget);
     }
     
-    private void setParentAttributesAsLocalVariable(IProcessableElementTag tag, IEngineContext engineContext) {
-        Collection<IAttribute> parentAttributes = Arrays.asList(tag.getAllAttributes());
-        engineContext.setVariable(PARENT_ATTRIBUTES_VAR, parentAttributes);
+    protected void assignProperties(Renderable renderable, IProcessableElementTag tag, ITemplateContext context, AttributeName skipAttribute) {
+        final IAttribute[] allAttributes = tag.getAllAttributes();
+        for (IAttribute attribute : allAttributes) {
+            final AttributeName attr = attribute.getAttributeDefinition().getAttributeName();
+            final boolean skip = attr.equals(skipAttribute);
+            if(getDialectPrefix().equals(attr.getPrefix()) && !skip) {
+                final Object value = evaluate(attribute.getValue(), context);
+                try {
+                    Reflection.set(renderable, attr.getAttributeName(), value);
+                } catch (Exception e) {
+                    LOGGER.error("Unable to set value", e);
+                }
+            }
+        }
     }
     
 }

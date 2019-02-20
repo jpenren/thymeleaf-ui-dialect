@@ -4,10 +4,31 @@
 
 <!-- alert -->
 <div ui:render="${theAlert}"></div>
+
+<div ui:alert="${theAlert}"></div>
+
+<div ui:alert="#{msg.key}" id="id-from-template" ui:dismissible="true"></div>
 <!-- //alert -->
 
+<!-- badge -->
+<div ui:badge="value" ui:href="'http://www.example.org'"></div>
+<!-- //badge -->
+
+<!-- breadcrumb -->
+<nav ui:breadcrumb="${breadcrumb}"></nav>
+<!-- //breadcrumb -->
+
+<!-- button -->
+<button ui:button ui:toggle="true" ui:active="true"></button>
+<!-- //button -->
+
+<!-- button-group -->
+<div ui:button-group></div>
+<!-- //button-group -->
+
 <!-- card -->
-<div ui:render="${theCard}"></div>
+<div ui:render="${theCard}" ui:header="Header" ui:footer="Footer"></div>
+<div ui:card ui:header="Header" ui:footer="Footer" data-other-attr="value"></div>
 <!-- //card -->
 
 <!-- render -->

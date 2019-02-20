@@ -1,4 +1,4 @@
-<nav th:if="*{isVisible(#httpServletRequest)}" ui:copy-parent-attributes="*" class="navbar navbar-light bg-light">
+<nav th:if="*{isVisible(#httpServletRequest)}" ui:copy-tag-attributes="*" class="navbar navbar-light bg-light">
   <a th:if="*{brand}" class="navbar-brand" th:href="*{brand.getHref(#httpServletRequest)}" th:utext="*{brand.text}">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

@@ -1,4 +1,4 @@
-<figure ui:copy-parent-attributes="*" class="figure">
+<figure ui:copy-tag-attributes="*" class="figure">
     <img th:src="*{image.src}" th:class="*{image.className}?:'figure-img img-fluid'" th:alt="*{image.alt}">
     <figcaption th:if="*{hasCaption()}" class="figure-caption">[[*{caption}]]</figcaption>
 </figure>

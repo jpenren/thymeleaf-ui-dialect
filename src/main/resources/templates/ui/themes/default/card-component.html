@@ -1,4 +1,4 @@
-<div th:if="*{isVisible(#httpServletRequest)}" ui:copy-parent-attributes="*" class="card">
+<div th:if="*{isVisible(#httpServletRequest)}" ui:copy-tag-attributes="*" class="card">
     <div th:if="*{header}" class="card-header" th:utext="*{header}"></div>
     <img th:if="*{image}" class="card-img-top" th:src="*{image.src}" th:alt="*{image.alt}" th:title="*{image.title}">
     <div class="card-body">

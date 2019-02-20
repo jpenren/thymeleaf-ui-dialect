@@ -1,4 +1,4 @@
 <th:block th:if="*{isVisible(#httpServletRequest)}">
-<span th:if="*{!hasLink()}" ui:copy-parent-attributes="*" class="badge badge-secondary" th:text="*{text}"></span>
-<a th:if="*{hasLink()}" ui:copy-parent-attributes="*" class="badge badge-secondary" th:href="*{getHref(#httpServletRequest)}" th:text="*{text}"></a>
+<span th:if="*{!hasLink()}" ui:copy-tag-attributes="*" class="badge badge-secondary" th:text="*{text}"></span>
+<a th:if="*{hasLink()}" ui:copy-tag-attributes="*" class="badge badge-secondary" th:href="*{getHref(#httpServletRequest)}" th:text="*{text}"></a>
 </th:block>

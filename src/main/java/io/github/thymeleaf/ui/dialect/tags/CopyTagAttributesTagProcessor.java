@@ -1,6 +1,5 @@
 package io.github.thymeleaf.ui.dialect.tags;
 
-import java.util.Collection;
 import java.util.Collections;
 
 import org.thymeleaf.context.ITemplateContext;
@@ -15,13 +14,13 @@ import io.github.thymeleaf.ui.Attrs;
 import io.github.thymeleaf.ui.HasHtmlAttributes;
 import io.github.thymeleaf.ui.internal.Strings;
 
-public class CopyParentAttributesTagProcessor extends AbstractAttributeTagProcessor {
+public class CopyTagAttributesTagProcessor extends AbstractAttributeTagProcessor {
     
     private static final int PRECEDENCE = Integer.MAX_VALUE;
-    private static final String ATTR_NAME = "copy-parent-attributes";
-    public static final String PARENT_ATTRIBUTES_VAR = "_parent_node_attributes";
+    private static final String ATTR_NAME = "copy-tag-attributes";
+    public static final String PARENT_ATTRIBUTES_VAR = "_tag_node_attributes";
 
-    public CopyParentAttributesTagProcessor(final String dialectPrefix) {
+    public CopyTagAttributesTagProcessor(final String dialectPrefix) {
         super(TemplateMode.HTML, dialectPrefix, null, false, ATTR_NAME, true, PRECEDENCE, true);
     }
 
@@ -29,10 +28,10 @@ public class CopyParentAttributesTagProcessor extends AbstractAttributeTagProces
     protected void doProcess(ITemplateContext context, IProcessableElementTag tag, AttributeName attributeName,
             String attributeValue, IElementTagStructureHandler structureHandler) {
         
-        Collection<IAttribute> parentAttributes = getParentAttributes(context);
+        IAttribute[] parentAttributes = getParentAttributes(context);
         for (IAttribute iAttribute : parentAttributes) {
             AttributeName attribute = iAttribute.getAttributeDefinition().getAttributeName();
-            if(isHtmlAttr(attribute)) {
+            if(isStandardAttribute(attribute)) {
                 String value = iAttribute.getValue();
                 String name = iAttribute.getAttributeCompleteName();
                 structureHandler.setAttribute(name, value);
@@ -53,13 +52,12 @@ public class CopyParentAttributesTagProcessor extends AbstractAttributeTagProces
         }
     }
 
-    @SuppressWarnings("unchecked")
-    private Collection<IAttribute> getParentAttributes(ITemplateContext context) {
+    private IAttribute[] getParentAttributes(ITemplateContext context) {
         Object variable = context.getVariable(PARENT_ATTRIBUTES_VAR);
-        return (Collection<IAttribute>) (variable==null ? Collections.emptyList() : variable);
+        return (IAttribute[]) (variable==null ? Collections.emptyList() : variable);
     }
     
-    private boolean isHtmlAttr(AttributeName attributeName) {
+    private boolean isStandardAttribute(AttributeName attributeName) {
         return attributeName.getPrefix()==null;
     }
     

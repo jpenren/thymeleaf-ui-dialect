@@ -1,4 +1,4 @@
-<ul th:if="*{isVisible(#httpServletRequest)}" ui:copy-parent-attributes="*" class="nav">
+<ul th:if="*{isVisible(#httpServletRequest)}" ui:copy-tag-attributes="*" class="nav">
   <th:block th:each="item:*{items}" th:if="${item.isVisible(#httpServletRequest)}">
     <li th:if="${item.name=='Link'}" class="nav-item" >
       <a class="nav-link" th:classappend="${item.isActive(#httpServletRequest)}?active:(${item.isDisabled(#httpServletRequest)}?disabled)" th:href="${item.getHref(#httpServletRequest)}">[[${item.text}]]</a>

@@ -24,7 +24,13 @@ import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.processor.StandardXmlNsTagProcessor;
 import org.thymeleaf.templatemode.TemplateMode;
 
-import io.github.thymeleaf.ui.dialect.tags.CopyParentAttributesTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.AlertAttributeTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.BadgeAttributeTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.BreadcrumbAttributeTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.ButtonAttributeTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.ButtonGroupAttributeTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.CardAttributeTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.CopyTagAttributesTagProcessor;
 import io.github.thymeleaf.ui.dialect.tags.RenderAttributeTagProcessor;
 
 public final class UiDialect extends AbstractProcessorDialect {
@@ -38,8 +44,14 @@ public final class UiDialect extends AbstractProcessorDialect {
     public Set<IProcessor> getProcessors(final String dialectPrefix) {
         final Set<IProcessor> processors = new HashSet<>();
         processors.add(new StandardXmlNsTagProcessor(TemplateMode.HTML, PREFIX));
-        processors.add(new CopyParentAttributesTagProcessor(dialectPrefix));
+        processors.add(new CopyTagAttributesTagProcessor(dialectPrefix));
         processors.add(new RenderAttributeTagProcessor(dialectPrefix));
+        processors.add(new AlertAttributeTagProcessor(dialectPrefix));
+        processors.add(new BadgeAttributeTagProcessor(dialectPrefix));
+        processors.add(new BreadcrumbAttributeTagProcessor(dialectPrefix));
+        processors.add(new ButtonAttributeTagProcessor(dialectPrefix));
+        processors.add(new ButtonGroupAttributeTagProcessor(dialectPrefix));
+        processors.add(new CardAttributeTagProcessor(dialectPrefix));
         
         return processors;
     }

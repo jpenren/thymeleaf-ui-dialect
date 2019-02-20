@@ -40,7 +40,7 @@ public final class RenderAttributeTagProcessor extends AbstractTagProcessor {
         
         final Object target = evaluate(attributeValue, context);
         if (target instanceof Renderable) {
-            render((Renderable)target, context, tag, structureHandler);
+            render((Renderable)target, context, tag, structureHandler, attributeName);
         } else {
             LOGGER.debug("Target object '{}' is not Renderable", attributeValue);
         }

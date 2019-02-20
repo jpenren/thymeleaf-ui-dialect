@@ -11,7 +11,9 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import io.github.thymeleaf.ui.components.Alert;
+import io.github.thymeleaf.ui.components.Breadcrumb;
 import io.github.thymeleaf.ui.components.Card;
+import io.github.thymeleaf.ui.components.Breadcrumb.Location;
 
 public class DialectBenchmarkTest {
 
@@ -47,6 +49,10 @@ public class DialectBenchmarkTest {
             card.setId("cardId");
             card.setHeader("my header");
             context.setVariable("theCard", card);
+            
+            Breadcrumb breadcrumb = new Breadcrumb();
+            breadcrumb.add(new Location("href","text"));
+            context.setVariable("breadcrumb", breadcrumb);
             
             context.setVariable("msg", "Mensaje molón");
             context.setVariable("component", carousel(slide("src", "caption text"), slide("src", "caption text")));

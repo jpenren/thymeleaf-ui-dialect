@@ -1,4 +1,4 @@
-<nav th:if="*{isVisible(#httpServletRequest)}" ui:copy-parent-attributes="*" aria-label="breadcrumb">
+<nav th:if="*{isVisible(#httpServletRequest)}" ui:copy-tag-attributes="*" aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item" th:each="location,it:*{locations}" th:classappend="${it.last}?active" th:attrappend="aria-current=${it.last}?page">
       <a th:if="${location.hasLink()}" th:href="${location.getHref(#httpServletRequest)}" th:text="${location.text}"></a>
