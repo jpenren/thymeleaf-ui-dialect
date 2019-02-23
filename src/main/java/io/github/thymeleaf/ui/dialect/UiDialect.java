@@ -20,6 +20,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.thymeleaf.dialect.AbstractProcessorDialect;
+import org.thymeleaf.dialect.IExpressionObjectDialect;
+import org.thymeleaf.expression.IExpressionObjectFactory;
 import org.thymeleaf.processor.IProcessor;
 import org.thymeleaf.standard.processor.StandardXmlNsTagProcessor;
 import org.thymeleaf.templatemode.TemplateMode;
@@ -30,11 +32,15 @@ import io.github.thymeleaf.ui.dialect.tags.BreadcrumbAttributeTagProcessor;
 import io.github.thymeleaf.ui.dialect.tags.ButtonAttributeTagProcessor;
 import io.github.thymeleaf.ui.dialect.tags.ButtonGroupAttributeTagProcessor;
 import io.github.thymeleaf.ui.dialect.tags.CardAttributeTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.CarouselAttributeTagProcessor;
 import io.github.thymeleaf.ui.dialect.tags.CopyTagAttributesTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.DropdownAttributeTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.FigureAttributeTagProcessor;
 import io.github.thymeleaf.ui.dialect.tags.RenderAttributeTagProcessor;
 
-public final class UiDialect extends AbstractProcessorDialect {
+public final class UiDialect extends AbstractProcessorDialect implements IExpressionObjectDialect {
 
+    private static final UiExpressionObjectFactory UI_FACTORY = new UiExpressionObjectFactory();
     private static final String PREFIX = "ui";
 
     public UiDialect() {
@@ -52,8 +58,16 @@ public final class UiDialect extends AbstractProcessorDialect {
         processors.add(new ButtonAttributeTagProcessor(dialectPrefix));
         processors.add(new ButtonGroupAttributeTagProcessor(dialectPrefix));
         processors.add(new CardAttributeTagProcessor(dialectPrefix));
+        processors.add(new CarouselAttributeTagProcessor(dialectPrefix));
+        processors.add(new DropdownAttributeTagProcessor(dialectPrefix));
+        processors.add(new FigureAttributeTagProcessor(dialectPrefix));
         
         return processors;
     }
 
+    @Override
+    public IExpressionObjectFactory getExpressionObjectFactory() {
+        return UI_FACTORY;
+    }
+    
 }

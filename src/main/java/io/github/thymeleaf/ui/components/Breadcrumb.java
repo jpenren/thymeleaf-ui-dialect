@@ -17,7 +17,6 @@
 package io.github.thymeleaf.ui.components;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,7 +40,7 @@ public class Breadcrumb extends Component {
         }
     }
     
-    public void add(Collection<Location> locations) {
+    public void setLocations(List<Location> locations) {
         this.locations.addAll(locations);
     }
 

@@ -35,19 +35,27 @@ public final class Strings {
         return obj != null;
     }
 
-    public static String dash(String text) {
-        return text == null ? EMPTY : text.replaceAll("([a-z])([A-Z]+)", "$1-$2").toLowerCase();
+    public static String dash(String str) {
+        return str == null ? EMPTY : str.replaceAll("([a-z])([A-Z]+)", "$1-$2").toLowerCase();
+    }
+    
+    public static String capitalize(String str) {
+        if (str == null || str.length() == 0) {
+            return str;
+        }
+        
+        final StringBuilder sb = new StringBuilder(str.length());
+        final String[] strings = str.split("-");
+        for (String string : strings) {
+            sb.append(Character.toUpperCase(string.charAt(0)));
+            sb.append(string.substring(1));
+        }
+        
+        return sb.toString();
     }
 
     public static String asString(Object obj) {
         return obj instanceof String ? (String) obj : EMPTY;
     }
     
-    public static String capitalize(String string) {
-        if (string == null || string.length() == 0) {
-            return string;
-        }
-        return string.substring(0, 1).toUpperCase() + string.substring(1);
-    }
-
 }

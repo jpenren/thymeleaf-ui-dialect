@@ -12,10 +12,14 @@
 
 <!-- badge -->
 <div ui:badge="value" ui:href="'http://www.example.org'"></div>
+
+<div ui:badge="value" ui:href="'http://www.example.org'"></div>
 <!-- //badge -->
 
 <!-- breadcrumb -->
 <nav ui:breadcrumb="${breadcrumb}"></nav>
+
+<nav ui:breadcrumb ui:locations="${ {#ui.location('http://url','Home'), #ui.location('Current page')} }"></nav>
 <!-- //breadcrumb -->
 
 <!-- button -->
@@ -28,11 +32,28 @@
 
 <!-- card -->
 <div ui:render="${theCard}" ui:header="Header" ui:footer="Footer"></div>
-<div ui:card ui:header="Header" ui:footer="Footer" data-other-attr="value"></div>
+
+<div ui:card ui:header="Header" ui:image="${#ui.image('der','alt','title')}" ui:footer="Footer" data-conter-dar="value"></div>
 <!-- //card -->
 
+<!-- carousel -->
+<div ui:carousel ui:slides="${ {#ui.slide('#{http://url}','Caption'), #ui.slide('http://url')} }" ui:show-controls="true" ui:show-indicators="true"></div>
+<!-- //carousel -->
+
+<!-- dropdown -->
+<div ui:dropdown="${#ui.toggle('toggle', 'theId','theClass')}" ui:direction="dropup" ui:header="#{header}" ui:items="${ {#ui.link('href', 'text'), #ui.divider, #ui.link('rerf','tex')} }"></div>
+
+<div ui:dropdown="#{toggle}" ui:header="#{header}" ui:items="${ {#ui.link('href', 'text'), #ui.divider, #ui.link('rerf','tex')} }"></div>
+<!-- //dropdown -->
+
+<!-- figure -->
+<div ui:figure="${#ui.image('src')}" ui:caption="#{da}"></div>
+
+<div ui:figure ui:image="${#ui.image('src')}" ui:caption="#{da}"></div>
+<!-- //figure -->
+
 <!-- render -->
-<div ui:render="${component}"></div>
+<!-- <div ui:render="${component}"></div> -->
 <!-- //render -->
 
 </body>

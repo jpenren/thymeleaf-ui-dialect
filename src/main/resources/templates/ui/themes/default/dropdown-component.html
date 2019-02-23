@@ -1,4 +1,4 @@
-<div th:if="*{isVisible(#httpServletRequest)}" ui:copy-tag-attributes="*" class="dropdown">
+<div th:if="*{isVisible(#httpServletRequest)}" ui:copy-tag-attributes="*" class="dropdown" th:classappend="*{#strings.toString(direction).equals('DROPDOWN') ? '' : #strings.toLowerCase(direction)}">
   <button th:class="*{toggle.className}?:'btn btn-secondary dropdown-toggle'" th:id="*{toggle.id}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">[[*{toggle.text}]]</button>
   <div class="dropdown-menu" th:attrappend="aria-labelledby=*{toggle.id}">
         <h6 th:if="*{header}" class="dropdown-header">[[*{header.text}]]</h6>

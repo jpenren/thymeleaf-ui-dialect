@@ -42,6 +42,10 @@ public class Carousel extends Component {
         slides.add(slide);
     }
     
+    public void setSlides(List<Slide> slides) {
+        this.slides.addAll(slides);
+    }
+    
     public List<Slide> getSlides() {
         return Collections.unmodifiableList(slides);
     }

@@ -55,7 +55,7 @@ public class DialectBenchmarkTest {
             context.setVariable("breadcrumb", breadcrumb);
             
             context.setVariable("msg", "Mensaje molón");
-            context.setVariable("component", carousel(slide("src", "caption text"), slide("src", "caption text")));
+//            context.setVariable("component", carousel(slide("src", "caption text"), slide("src", "caption text")));
             html = engine.process("/test.html", context);
         }
 

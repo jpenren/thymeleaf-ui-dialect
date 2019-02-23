@@ -44,8 +44,16 @@ public class Dropdown extends Component {
         this.header = new Header(header);
     }
     
+    public void setDirection(String direction) {
+        this.direction = Direction.valueOf(direction.toUpperCase());
+    }
+    
     public void add(Link ... links) {
         this.items.addAll(links);
+    }
+    
+    public void setItems(List<Element> items) {
+        this.items.addAll(items);
     }
     
     public void add(int index, Link ... links) {

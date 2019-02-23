@@ -28,7 +28,7 @@ public class CopyTagAttributesTagProcessor extends AbstractAttributeTagProcessor
     protected void doProcess(ITemplateContext context, IProcessableElementTag tag, AttributeName attributeName,
             String attributeValue, IElementTagStructureHandler structureHandler) {
         
-        IAttribute[] parentAttributes = getParentAttributes(context);
+        IAttribute[] parentAttributes = getTagAttributes(context);
         for (IAttribute iAttribute : parentAttributes) {
             AttributeName attribute = iAttribute.getAttributeDefinition().getAttributeName();
             if(isStandardAttribute(attribute)) {
@@ -52,13 +52,13 @@ public class CopyTagAttributesTagProcessor extends AbstractAttributeTagProcessor
         }
     }
 
-    private IAttribute[] getParentAttributes(ITemplateContext context) {
+    private IAttribute[] getTagAttributes(ITemplateContext context) {
         Object variable = context.getVariable(PARENT_ATTRIBUTES_VAR);
         return (IAttribute[]) (variable==null ? Collections.emptyList() : variable);
     }
     
     private boolean isStandardAttribute(AttributeName attributeName) {
-        return attributeName.getPrefix()==null;
+        return !getDialectPrefix().equals(attributeName.getPrefix());
     }
     
 }
