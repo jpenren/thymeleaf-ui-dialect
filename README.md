@@ -225,7 +225,7 @@ import static io.github.thymeleaf.ui.Components.*;
 public class UiControllerAdvice {
     
     @ModelAttribute
-    public NavigationHeader addNavigationHeader(Locale locale) {
+    public NavigationHeader addNavigationHeader() {
         NavigationHeader header = navigationHeader("#", "navheader", link("#", "text"));
         Dropdown dropdown = dropdown("toggle", "t1");
         dropdown.add(link("#", "text"));
