@@ -35,7 +35,7 @@ Template:
 ```
 Output:
 ```html
-<div class="alert alert-primary alert-dismissible fade show" role="alert" id="id-from-template">
+<div class="alert alert-primary alert-dismissible fade show" role="alert">
   Alert message
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -199,6 +199,7 @@ Template:
 ```html
 <nav ui:nav-header ui:brand="${ #ui.link('href','text') }" ui:items="${ {#ui.link('ref','alt')} }"></nav>
 ```
+Output:
 ```html
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" href="href">Text</a>
