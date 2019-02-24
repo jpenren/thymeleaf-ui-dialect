@@ -7,7 +7,6 @@ import org.thymeleaf.model.IProcessableElementTag;
 import org.thymeleaf.processor.element.IElementTagStructureHandler;
 
 import io.github.thymeleaf.ui.components.NavigationHeader;
-import io.github.thymeleaf.ui.components.Sidebar;
 
 public class NavigationHeaderAttributeTagProcessor extends AbstractTagProcessor {
     
@@ -27,7 +26,7 @@ public class NavigationHeaderAttributeTagProcessor extends AbstractTagProcessor 
     private NavigationHeader resolve(String attributeValue, ITemplateContext context) {
         if(attributeValue==null) {
             Object variable = context.getVariable("navigationHeader");
-            return variable instanceof Sidebar ? (NavigationHeader) variable : new NavigationHeader();
+            return variable instanceof NavigationHeader ? (NavigationHeader) variable : new NavigationHeader();
         }
         
         Object target = evaluate(attributeValue, context);
