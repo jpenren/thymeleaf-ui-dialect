@@ -334,10 +334,10 @@ Output:
 ```
 
 
-Create components in Java
+Create UI components in Java
 --------
 
-Spring MV @Controller:
+Spring MVC @Controller:
 
 ```java
 import static io.github.thymeleaf.ui.Components.*;
@@ -397,6 +397,8 @@ Application html template:
 </body>
 </html>
 ```
+
+Note: the <code>ui:render</code> tag is able to render any Renderable object. Using <code>ui:render="${alert}"</code> produces the same output as <code>ui:alert="${alert}"</code>
 
 <img src="https://raw.githubusercontent.com/jpenren/thymeleaf-ui-dialect/master/doc/components.jpg" width="600">
 
