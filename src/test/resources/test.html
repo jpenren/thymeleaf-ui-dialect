@@ -38,6 +38,8 @@
 
 <!-- carousel -->
 <div ui:carousel ui:slides="${ {#ui.slide('#{http://url}','Caption'), #ui.slide('http://url')} }" ui:show-controls="true" ui:show-indicators="true"></div>
+
+<div ui:carousel="${carousel}"></div>
 <!-- //carousel -->
 
 <!-- dropdown -->
@@ -51,6 +53,24 @@
 
 <div ui:figure ui:image="${#ui.image('src')}" ui:caption="#{da}"></div>
 <!-- //figure -->
+
+<!-- navigation -->
+<div ui:nav ui:items="${ {#ui.link('href', 'alt'),#ui.link('ref','alt')} }"></div>
+
+<div ui:nav="${nav}"></div>
+<!-- //navigation -->
+
+<!-- nav-header -->
+<nav ui:nav-header ui:brand="${ #ui.link('href','text') }" ui:items="${ {#ui.link('ref','alt')} }"></nav>
+
+<nav ui:nav-header="${navheader}"></nav>
+<!-- //nav-header -->
+
+<!-- sidebar -->
+<nav ui:sidebar ui:header="#{dd}" ui:items="${ {#ui.link('d','d'), #ui.link('d2','d2')} }"></nav>
+
+<nav ui:sidebar="${sidebar}"></nav>
+<!-- //sidebar -->
 
 <!-- render -->
 <!-- <div ui:render="${component}"></div> -->

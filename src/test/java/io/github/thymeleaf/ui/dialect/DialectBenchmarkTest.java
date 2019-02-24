@@ -13,6 +13,10 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import io.github.thymeleaf.ui.components.Alert;
 import io.github.thymeleaf.ui.components.Breadcrumb;
 import io.github.thymeleaf.ui.components.Card;
+import io.github.thymeleaf.ui.components.Navigation;
+import io.github.thymeleaf.ui.components.NavigationHeader;
+import io.github.thymeleaf.ui.components.Sidebar;
+import io.github.thymeleaf.ui.elements.Link;
 import io.github.thymeleaf.ui.components.Breadcrumb.Location;
 
 public class DialectBenchmarkTest {
@@ -54,8 +58,22 @@ public class DialectBenchmarkTest {
             breadcrumb.add(new Location("href","text"));
             context.setVariable("breadcrumb", breadcrumb);
             
+            Navigation nav = new Navigation();
+            nav.add(new Link("href","alt"));
+            nav.add(new Link("href","alt"));
+            context.setVariable("nav", nav);
+            
+            NavigationHeader nh = new NavigationHeader();
+            nh.add(new Link("ref","te"));
+            context.setVariable("navheader", nh);
+            
+            Sidebar sidebar = new Sidebar();
+            sidebar.add(new Link("ref","alt"), new Link("ref","alt"));
+            sidebar.add(new Sidebar.Submenu("text","theid", new Link("href","text")));
+            context.setVariable("sidebar", sidebar);
+            
             context.setVariable("msg", "Mensaje molón");
-//            context.setVariable("component", carousel(slide("src", "caption text"), slide("src", "caption text")));
+            context.setVariable("carousel", carousel(slide("src", "caption text"), slide("src", "caption text")));
             html = engine.process("/test.html", context);
         }
 

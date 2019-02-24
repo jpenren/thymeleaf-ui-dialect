@@ -33,6 +33,10 @@ import lombok.Setter;
 public class Sidebar extends Component {
     private final ElementCollection items = new ElementCollection();
     private String header;
+    
+    public void setItems(List<Element> items) {
+        this.items.addAll(items);
+    }
 
     public void add(Link... links) {
         items.addAll(links);

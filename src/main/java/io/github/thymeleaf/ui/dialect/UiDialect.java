@@ -36,7 +36,10 @@ import io.github.thymeleaf.ui.dialect.tags.CarouselAttributeTagProcessor;
 import io.github.thymeleaf.ui.dialect.tags.CopyTagAttributesTagProcessor;
 import io.github.thymeleaf.ui.dialect.tags.DropdownAttributeTagProcessor;
 import io.github.thymeleaf.ui.dialect.tags.FigureAttributeTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.NavigationAttributeTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.NavigationHeaderAttributeTagProcessor;
 import io.github.thymeleaf.ui.dialect.tags.RenderAttributeTagProcessor;
+import io.github.thymeleaf.ui.dialect.tags.SidebarAttributeTagProcessor;
 
 public final class UiDialect extends AbstractProcessorDialect implements IExpressionObjectDialect {
 
@@ -61,6 +64,9 @@ public final class UiDialect extends AbstractProcessorDialect implements IExpres
         processors.add(new CarouselAttributeTagProcessor(dialectPrefix));
         processors.add(new DropdownAttributeTagProcessor(dialectPrefix));
         processors.add(new FigureAttributeTagProcessor(dialectPrefix));
+        processors.add(new NavigationAttributeTagProcessor(dialectPrefix));
+        processors.add(new NavigationHeaderAttributeTagProcessor(dialectPrefix));
+        processors.add(new SidebarAttributeTagProcessor(dialectPrefix));
         
         return processors;
     }
