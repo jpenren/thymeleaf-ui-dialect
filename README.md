@@ -22,6 +22,9 @@ String theme = "default";
 templateEngine.addTemplateResolver(new ComponentTemplateResolver(theme));
 ```
 
+Components
+-----
+
 Enabling this dialect will introduce the `ui` namespace and a new set of attribute processors for available components:
 
 **Alert**
