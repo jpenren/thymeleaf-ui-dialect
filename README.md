@@ -44,6 +44,7 @@ Output:
 ```
 
 **Badge**
+
 Template:
 ```html
 <span ui:badge="value"></span>
