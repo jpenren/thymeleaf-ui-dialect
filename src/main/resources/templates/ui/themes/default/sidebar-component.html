@@ -1,5 +1,5 @@
 <nav th:if="*{isVisible(#httpServletRequest)}" ui:copy-tag-attributes="*" class="sidebar-nav">
-  <div th:if="*{header}" th:utext="*{header}" class="sidebar-header">Sidebar</div>
+  <div th:if="*{header}" th:utext="*{header}" class="sidebar-header">Header</div>
   <ul>
     <th:block th:each="item:*{items}" th:if="${item.isVisible(#httpServletRequest)}">
     <li th:if="${item.name=='Link'}" th:class="${item.isActive(#httpServletRequest)}?active:(${item.isDisabled(#httpServletRequest)}?disabled)">

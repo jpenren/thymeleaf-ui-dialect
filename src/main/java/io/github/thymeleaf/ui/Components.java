@@ -266,7 +266,7 @@ public final class Components {
     }
     
     public static Submenu submenu(String text, Link... links) {
-        return submenu(text, "menu-"+System.currentTimeMillis(), null, links);
+        return submenu(text, "menu_"+System.currentTimeMillis(), null, links);
     }
     
     public static Submenu submenu(String text, String id, Link... links) {

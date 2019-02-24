@@ -1,7 +1,12 @@
 package io.github.thymeleaf.ui.dialect;
 
 import static io.github.thymeleaf.ui.Components.carousel;
+import static io.github.thymeleaf.ui.Components.dropdown;
+import static io.github.thymeleaf.ui.Components.link;
+import static io.github.thymeleaf.ui.Components.navigationHeader;
+import static io.github.thymeleaf.ui.Components.sidebar;
 import static io.github.thymeleaf.ui.Components.slide;
+import static io.github.thymeleaf.ui.Components.submenu;
 
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -13,6 +18,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import io.github.thymeleaf.ui.components.Alert;
 import io.github.thymeleaf.ui.components.Breadcrumb;
 import io.github.thymeleaf.ui.components.Card;
+import io.github.thymeleaf.ui.components.Dropdown;
 import io.github.thymeleaf.ui.components.Navigation;
 import io.github.thymeleaf.ui.components.NavigationHeader;
 import io.github.thymeleaf.ui.components.Sidebar;
@@ -63,13 +69,17 @@ public class DialectBenchmarkTest {
             nav.add(new Link("href","alt"));
             context.setVariable("nav", nav);
             
-            NavigationHeader nh = new NavigationHeader();
-            nh.add(new Link("ref","te"));
-            context.setVariable("navheader", nh);
+            NavigationHeader header = navigationHeader("#", "navheader", link("#", "link"));
+            Dropdown dropdown = dropdown("tog", "t1");
+            dropdown.add(link("#", "Link"));
+            dropdown.add(link("#", "Link2"));
+            dropdown.divider();
+            dropdown.add(link("#", "Link"));
+            header.add(dropdown);
+            context.setVariable("navigationHeader", header);
             
-            Sidebar sidebar = new Sidebar();
-            sidebar.add(new Link("ref","alt"), new Link("ref","alt"));
-            sidebar.add(new Sidebar.Submenu("text","theid", new Link("href","text")));
+            Sidebar sidebar = sidebar("Header", link("#", "link"), link("#", "link"));
+            sidebar.add(submenu("Menu", link("#", "link"), link("#", "Link")));
             context.setVariable("sidebar", sidebar);
             
             context.setVariable("msg", "Mensaje molón");

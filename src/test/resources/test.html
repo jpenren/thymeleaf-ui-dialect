@@ -11,6 +11,8 @@
 <!-- //alert -->
 
 <!-- badge -->
+<div ui:badge="value"></div>
+
 <div ui:badge="value" ui:href="'http://www.example.org'"></div>
 
 <div ui:badge="value" ui:href="'http://www.example.org'"></div>
@@ -33,7 +35,7 @@
 <!-- card -->
 <div ui:render="${theCard}" ui:header="Header" ui:footer="Footer"></div>
 
-<div ui:card ui:header="Header" ui:image="${#ui.image('der','alt','title')}" ui:footer="Footer" data-conter-dar="value"></div>
+<div ui:card ui:header="Header" ui:image="${#ui.image('http://url','alt text')}" ui:footer="Footer"></div>
 <!-- //card -->
 
 <!-- carousel -->
@@ -49,27 +51,27 @@
 <!-- //dropdown -->
 
 <!-- figure -->
-<div ui:figure="${#ui.image('src')}" ui:caption="#{da}"></div>
+<div ui:figure="${#ui.image('http://url')}" ui:caption="#{caption}"></div>
 
 <div ui:figure ui:image="${#ui.image('src')}" ui:caption="#{da}"></div>
 <!-- //figure -->
 
 <!-- navigation -->
-<div ui:nav ui:items="${ {#ui.link('href', 'alt'),#ui.link('ref','alt')} }"></div>
+<div ui:nav ui:items="${ {#ui.link('href', 'alt'),#ui.link('href','alt')} }"></div>
 
 <div ui:nav="${nav}"></div>
 <!-- //navigation -->
 
 <!-- nav-header -->
-<nav ui:nav-header ui:brand="${ #ui.link('href','text') }" ui:items="${ {#ui.link('ref','alt')} }"></nav>
+<nav ui:nav-header ui:brand="${ #ui.link('href','text') }" ui:items="${ {#ui.link('href','text')} }"></nav>
 
-<nav ui:nav-header="${navheader}"></nav>
+<nav ui:nav-header></nav>
 <!-- //nav-header -->
 
 <!-- sidebar -->
 <nav ui:sidebar></nav>
 
-<nav ui:sidebar="new" ui:header="#{dd}" ui:items="${ {#ui.link('d','d'), #ui.link('d2','d2')} }"></nav>
+<!-- <nav ui:sidebar="mySidebar" ui:header="#{header}" ui:items="${ {#ui.link('href','text'), #ui.link('href','text')} }"></nav> -->
 
 <!-- //sidebar -->
 
