@@ -67,9 +67,10 @@
 <!-- //nav-header -->
 
 <!-- sidebar -->
-<nav ui:sidebar ui:header="#{dd}" ui:items="${ {#ui.link('d','d'), #ui.link('d2','d2')} }"></nav>
+<nav ui:sidebar></nav>
 
-<nav ui:sidebar="${sidebar}"></nav>
+<nav ui:sidebar="new" ui:header="#{dd}" ui:items="${ {#ui.link('d','d'), #ui.link('d2','d2')} }"></nav>
+
 <!-- //sidebar -->
 
 <!-- render -->
